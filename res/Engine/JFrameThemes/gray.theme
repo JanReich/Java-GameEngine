@@ -1,0 +1,17 @@
+# This is an example of a Theme contained in a text file.
+# Use a CustomTheme object to load it.
+
+# font style values - (1)Font.BOLD (2)Font.ITALIC (3)Font.PLAIN (4)Font.BOLD|Font.ITALIC
+
+name: Gray Template
+
+primary1=66,99,99
+primary2=192,192,192
+primary3=132,132,132
+
+secondary1=0,0,0
+secondary2=99,99,99
+secondary3=102,102,102
+
+controlfont=Monospaced,Font.BOLD,13
+titlefont=Verdana,Font.BOLD,15
