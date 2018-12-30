@@ -5,6 +5,7 @@
       <w>abgerufen</w>
       <w>abgeschlossen</w>
       <w>abgeschnitten</w>
+      <w>abgespielt</w>
       <w>abgezogen</w>
       <w>abschnitt</w>
       <w>achtung</w>
@@ -12,6 +13,7 @@
       <w>aktiv</w>
       <w>aktiven</w>
       <w>aktives</w>
+      <w>aktiviert</w>
       <w>aktuell</w>
       <w>aktuelle</w>
       <w>aktuellen</w>
@@ -20,10 +22,13 @@
       <w>anderer</w>
       <w>angabe</w>
       <w>angaben</w>
+      <w>angegeben</w>
       <w>angegebene</w>
       <w>angeglichen</w>
+      <w>angenommen</w>
       <w>arraylists</w>
       <w>auch</w>
+      <w>aufgebaut</w>
       <w>aufgeführt</w>
       <w>aufgerufen</w>
       <w>aufgetreten</w>
@@ -40,6 +45,8 @@
       <w>beginn</w>
       <w>beheben</w>
       <w>beim</w>
+      <w>beispiel</w>
+      <w>beispielhafte</w>
       <w>benutzt</w>
       <w>benötigten</w>
       <w>berechnet</w>
@@ -65,6 +72,7 @@
       <w>datei</w>
       <w>datenbank</w>
       <w>dazu</w>
+      <w>deaktiviert</w>
       <w>debuggen</w>
       <w>dient</w>
       <w>diese</w>
@@ -76,6 +84,7 @@
       <w>doctype</w>
       <w>drawingpanel</w>
       <w>drawingpannel</w>
+      <w>dritte</w>
       <w>durch</w>
       <w>eigenschaften</w>
       <w>eine</w>
@@ -92,6 +101,7 @@
       <w>erfolgreich</w>
       <w>ergebnis</w>
       <w>erreicht</w>
+      <w>erschaffen</w>
       <w>erste</w>
       <w>erstelle</w>
       <w>erstellen</w>
@@ -104,6 +114,7 @@
       <w>fataler</w>
       <w>fehler</w>
       <w>fehlermeldung</w>
+      <w>fehlers</w>
       <w>festgelegt</w>
       <w>festlegen</w>
       <w>folgendem</w>
@@ -130,6 +141,7 @@
       <w>inaktiv</w>
       <w>informationen</w>
       <w>inhalt</w>
+      <w>inhaltsobjekt</w>
       <w>inherhalb</w>
       <w>initalisiert</w>
       <w>jans</w>
@@ -190,6 +202,8 @@
       <w>rechte</w>
       <w>referenzen</w>
       <w>regelmäßige</w>
+      <w>reihe</w>
+      <w>reihen</w>
       <w>repräsentiert</w>
       <w>returnt</w>
       <w>rotierten</w>
@@ -206,23 +220,28 @@
       <w>sind</w>
       <w>skalaprodukt</w>
       <w>skalarprodukt</w>
+      <w>soll</w>
       <w>sotiert</w>
+      <w>spalten</w>
       <w>spritesheet</w>
       <w>spritesheets</w>
       <w>standardwerten</w>
       <w>standart</w>
       <w>standartwerten</w>
       <w>starte</w>
+      <w>starten</w>
       <w>subimage</w>
       <w>subimages</w>
       <w>teil</w>
       <w>teile</w>
       <w>teilt</w>
       <w>timebased</w>
+      <w>trennen</w>
       <w>uhrzeit</w>
       <w>unbekannter</w>
       <w>ungueltige</w>
       <w>ungültige</w>
+      <w>unterlaufen</w>
       <w>updaten</w>
       <w>vectoren</w>
       <w>vektor</w>
@@ -234,6 +253,7 @@
       <w>verschlüsselt</w>
       <w>verschlüsselung</w>
       <w>versucht</w>
+      <w>verweis</w>
       <w>verwendet</w>
       <w>verwendung</w>
       <w>vorbehalten</w>

@@ -17,10 +17,15 @@ public class Spritesheet {
 
     public Spritesheet(String path, int imagesRow, int imagesCol) {
 
+        this(new Image(path), imagesRow, imagesCol);
+    }
+
+    public Spritesheet(Image image, int imagesRow, int imagesCol) {
+
         MyLogger.engineInformation("[Engine] Ein neues Spritesheet wird erstellt...");
         this.imagesRow = imagesRow;
         this.imagesCol = imagesCol;
-        this.spritesheet = new Image(path);
+        this.spritesheet = image;
 
         this.splitSheet();
     }
@@ -32,12 +37,12 @@ public class Spritesheet {
 
         if(imagesRow >= 1 && imagesCol >= 1) {
 
-            images = new Image[imagesRow][imagesCol];
+            images = new Image[imagesCol][imagesRow];
 
-            for (int row = 0; row < imagesRow; row++) {
-                for (int col = 0; col < imagesCol; col++) {
+            for (int row = 0; row < imagesCol; row++) {
+                for (int col = 0; col < imagesRow; col++) {
 
-                    images[row][col] = spritesheet.getSubimage(spritesheet.getWidth() / imagesRow * row, spritesheet.getHeight() / imagesCol * col, spritesheet.getWidth() / imagesRow, spritesheet.getHeight() / imagesCol);
+                    images[row][col] = spritesheet.getSubimage(spritesheet.getWidth() / imagesCol * row, spritesheet.getHeight() / imagesRow * col, spritesheet.getWidth() / imagesCol, spritesheet.getHeight() / imagesRow);
                 }
             }
 
