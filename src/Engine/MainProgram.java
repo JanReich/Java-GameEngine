@@ -61,13 +61,13 @@ public class MainProgram {
             MyLogger.engineInformation("[<b>MySQL</b>] Verbindung zur Datenbank wird hergestellt...");
             DatabaseConnector connector = new DatabaseConnector(mySQLConfig.getHost(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUsername(), mySQLConfig.getPassword());
 
-            GameManager gameManager = new GameManager(display, connector);
-            display.getActivePanel().drawObjectOnPanel(gameManager);
+            MyLogger.engineInformation("[Engine] Laden der Engine abgeschlossen!");
+            new GameManager(display, connector);
         } else {
 
+            MyLogger.engineInformation("[Engine] Laden der Engine abgeschlossen!");
             new GameManager(display);
         }
-        MyLogger.engineInformation("[Engine] Laden der Engine abgeschlossen!");
     }
 
     public static void main(String[] args) {

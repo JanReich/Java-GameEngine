@@ -49,6 +49,7 @@ public class HtmlFormatter extends Formatter {
 
         return "<!DOCTYPE html>\n"
                 + "\t<head>\n"
+                + "\t\t<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n"
                 + "\t\t<style>\n"
                 + "\t\t\ttable { width: 100% }\n"
                 + "\t\t\tth { font:bold 10pt Tahoma; }\n"

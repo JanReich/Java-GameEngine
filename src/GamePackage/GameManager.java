@@ -3,6 +3,7 @@ package GamePackage;
 import Engine.Abitur.Database.DatabaseConnector;
 import Engine.Graphics.Display;
 import Engine.Graphics.Interfaces.GraphicalObject;
+
 import Engine.Toolbox.ResourceHelper.DrawHelper;
 
 public class GameManager implements GraphicalObject {
@@ -25,14 +26,11 @@ public class GameManager implements GraphicalObject {
      */
     public GameManager(Display display, DatabaseConnector connector) {
 
-        this.display = display;
-
 
     }
 
     @Override
     public void draw(DrawHelper draw) {
-
 
     }
 }
