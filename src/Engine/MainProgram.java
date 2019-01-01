@@ -17,7 +17,7 @@ import javax.swing.*;
  * Entwicklungsstatus der Engine (Überblick über kommende Features): https://trello.com/b/I2jmqmZQ/engine
  *
  * @Author: Jan-Philipp Reich (Jan Reich) aus Dortmund wohnhaft in NRW
- * @Version: 0.4 Alpha
+ * @Version: 0.68 Beta
  * @since 20.04.2017
  *
  * Alle Rechte vorbehalten (All rights reserved). Für Bildungszwecke zur freien Verwendung (mit der Angabe des Autoren der Engine)

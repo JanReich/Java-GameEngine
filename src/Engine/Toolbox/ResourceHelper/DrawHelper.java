@@ -3,6 +3,8 @@ package Engine.Toolbox.ResourceHelper;
 import Engine.Logger.MyLogger;
 
 import java.awt.*;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
 public class DrawHelper {
@@ -81,16 +83,143 @@ public class DrawHelper {
         } else addLogMessage(0);
     }
 
+        //---------- Draw Line ----------
+    public void drawLine(int x, int y, int x2, int y2) {
+
+        if(g2d != null) g2d.drawLine(x, y, x2 ,y2);
+    }
+
+        //---------- DRAW / FILL-Rec ----------
+
+    public void drawRec(int x, int y, int scale) {
+
+        this.drawRec(x, y, scale, scale);
+    }
+
+    public void drawRec(int x, int y, int width, int height) {
+
+        g2d.drawRect(x, y, width, height);
+    }
+
+    public void fillRec(int x, int y, int scale) {
+
+        this.fillRec(x, y, scale, scale);
+    }
+
+    public void fillRec(int x, int y, int width, int height) {
+
+        g2d.fillRect(x, y, width, height);
+    }
+
         //---------- DRAW-RoundRec ----------
+
+    public void drawRoundRec(int x, int y, int scale, int arc) {
+
+        this.drawRoundRec(x, y, scale, scale, arc);
+    }
 
     public void drawRoundRec(int x, int y, int width, int height, int arc) {
 
         g2d.drawRoundRect(x, y, width, height, arc, arc);
     }
 
+    public void fillRoundRec(int x, int y, int scale, int arc) {
+
+        this.fillRoundRec(x, y, scale, scale, arc);
+    }
+
     public void fillRoundRec(int x, int y, int width, int height, int arc) {
 
         g2d.fillRoundRect(x, y, width, height, arc, arc);
+    }
+
+        //---------- Draw Ellipse ----------
+    public void drawOval(int x, int y, int scale) {
+
+        this.drawOval(x, y, scale);
+    }
+
+    public void drawOval(int x, int y, int width, int height) {
+
+        if(g2d != null) g2d.drawOval(x, y, width, height);
+    }
+
+    public void fillOval(int x, int y, int scale) {
+
+        this.fillOval(x, y, scale, scale);
+    }
+
+    public void fillOval(int x, int y, int width, int height) {
+
+        if(g2d != null) g2d.fillOval(x, y, width, height);
+    }
+
+        //---------- Draw HollowCircle ----------
+    public void drawHollowCircle(int centerX, int centerY, int radius, int thickness) {
+
+        if(g2d != null) {
+
+            Ellipse2D outer = new Ellipse2D.Double(centerX- radius, centerY - radius, radius * 2, radius * 2);
+            Ellipse2D inner = new Ellipse2D.Double(centerX - radius + thickness, centerY - radius + thickness, radius * 2 - thickness * 2, radius * 2 - thickness * 2);
+
+            Area area = new Area(outer);
+            area.subtract(new Area(inner));
+
+            g2d.draw(area);
+        }
+    }
+
+    public void fillHollowCircle(int centerX, int centerY, int radius, int thickness) {
+
+        if(g2d != null) {
+
+            Ellipse2D outer = new Ellipse2D.Double(centerX- radius, centerY - radius, radius * 2, radius * 2);
+            Ellipse2D inner = new Ellipse2D.Double(centerX - radius + thickness, centerY - radius + thickness, radius * 2 - thickness * 2, radius * 2 - thickness * 2);
+
+            Area area = new Area(outer);
+            area.subtract(new Area(inner));
+
+            g2d.fill(area);
+        }
+    }
+
+        //---------- Fonts ----------
+    public Font createFont(int fontType, int fontSize) {
+
+        return new Font("", fontType, fontSize);
+    }
+
+    public Font getFont() {
+
+        if(g2d != null) return g2d.getFont();
+        return null;
+    }
+
+    public void setFont(Font font) {
+
+        if(g2d != null) g2d.setFont(font);
+    }
+
+    public void setFont(int fontType, int fontSize) {
+
+        if(g2d != null) g2d.setFont(new Font("", fontType, fontSize));
+    }
+
+    public int getFontWidth(String text) {
+
+        if(g2d != null) return g2d.getFontMetrics().stringWidth(text);
+        return -1;
+    }
+
+    public int getFontHeight(String text) {
+
+        if(g2d != null) return g2d.getFontMetrics().getHeight();
+        return -1;
+    }
+
+    public void setStroke(int stroke) {
+
+        if(g2d != null) g2d.setStroke(new BasicStroke(stroke));
     }
 
         //---------- SetColor ----------
@@ -102,25 +231,16 @@ public class DrawHelper {
         else addLogMessage(2);
     }
 
+    public void setColor(int r, int g, int b) {
+
+        g2d.setColor(new Color(r, g, b));
+    }
+
     public void setColor(int r, int g, int b, int a) {
 
         g2d.setColor(new Color(r, g, b, a));
     }
 
-        //---------- Set Font ----------
-
-    public void setFont(Font font) {
-
-        if(font != null)
-            g2d.setFont(font);
-        else addLogMessage(3);
-    }
-
-        //---------- Get Font Width ----------
-    public int getFontWidth(String text) {
-
-        return g2d.getFontMetrics().stringWidth(text);
-    }
         //---------- GETTER AND SETTER ----------
 
     public Graphics2D getG2d() {
