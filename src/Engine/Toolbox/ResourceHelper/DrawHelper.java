@@ -242,6 +242,13 @@ public class DrawHelper {
         else addLogMessage(2);
     }
 
+    public void setColor(Engine.Graphics.Color color) {
+
+        if(color != null)
+            g2d.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
+        else addLogMessage(2);
+    }
+
     public void setColor(int r, int g, int b) {
 
         g2d.setColor(new Color(r, g, b));

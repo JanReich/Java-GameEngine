@@ -127,18 +127,21 @@ public abstract class PhysicalWorld implements TimeBasedObject {
 
     public void registerStaticObject(PhysicalObject object) {
 
+
         if(object != null && staticObjects != null)
             SwingUtilities.invokeLater(() -> staticObjects.add(object));
     }
 
     public void removePhysicalObject(PhysicalObject object) {
 
+        MyLogger.info("[Engine] Ein neues statisches Objekt wurde in der Welt registiert und wird nun von der PhysicalWorld beeinflusst");
         if(object != null && physicalObjects != null)
             SwingUtilities.invokeLater(() -> physicalObjects.remove(object));
     }
 
     public void registerPhysicalObject(PhysicalObject object) {
 
+        MyLogger.info("[Engine] Ein neues physikalisches Objekt wurde in der Welt registiert und wird nun von der PhysicalWorld beeinflusst");
         if(object != null && physicalObjects != null)
             SwingUtilities.invokeLater(() -> physicalObjects.add(object));
     }

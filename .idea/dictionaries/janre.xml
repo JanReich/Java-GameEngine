@@ -63,6 +63,7 @@
       <w>automatisch</w>
       <w>autoregister</w>
       <w>autoren</w>
+      <w>beeinflusst</w>
       <w>beenden</w>
       <w>beendet</w>
       <w>befinden</w>
@@ -92,6 +93,8 @@
       <w>bislang</w>
       <w>bleibt</w>
       <w>buildungszwecke</w>
+      <w>cellpadding</w>
+      <w>cellspacing</w>
       <w>clientgruppe</w>
       <w>configreader</w>
       <w>convertet</w>
@@ -300,6 +303,7 @@
       <w>philipp</w>
       <w>physikalische</w>
       <w>physikalischen</w>
+      <w>physikalisches</w>
       <w>platzhalter</w>
       <w>primzahl</w>
       <w>programm</w>
@@ -368,6 +372,7 @@
       <w>starten</w>
       <w>startet</w>
       <w>statischen</w>
+      <w>statisches</w>
       <w>stattfindet</w>
       <w>steht</w>
       <w>stoppt</w>
