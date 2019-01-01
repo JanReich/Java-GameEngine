@@ -1,6 +1,7 @@
 package Engine.Toolbox.ResourceHelper;
 
 import Engine.Logger.MyLogger;
+import Engine.Physik.PhysicalObjects.Rectangle;
 
 import java.awt.*;
 import java.awt.geom.Area;
@@ -101,6 +102,11 @@ public class DrawHelper {
         g2d.drawRect(x, y, width, height);
     }
 
+    public void drawRec(Rectangle rectangle) {
+
+        g2d.drawRect((int) rectangle.getPosition().getX(), (int) rectangle.getPosition().getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+    }
+
     public void fillRec(int x, int y, int scale) {
 
         this.fillRec(x, y, scale, scale);
@@ -109,6 +115,11 @@ public class DrawHelper {
     public void fillRec(int x, int y, int width, int height) {
 
         g2d.fillRect(x, y, width, height);
+    }
+
+    public void fillRec(Rectangle rectangle) {
+
+        g2d.fillRect((int) rectangle.getPosition().getX(), (int) rectangle.getPosition().getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
     }
 
         //---------- DRAW-RoundRec ----------

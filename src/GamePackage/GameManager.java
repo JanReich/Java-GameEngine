@@ -27,10 +27,12 @@ public class GameManager implements GraphicalObject {
     public GameManager(Display display, DatabaseConnector connector) {
 
 
+        this.display = display;
     }
 
     @Override
     public void draw(DrawHelper draw) {
+
 
     }
 }

@@ -17,7 +17,7 @@ import javax.swing.*;
  * Entwicklungsstatus der Engine (Überblick über kommende Features): https://trello.com/b/I2jmqmZQ/engine
  *
  * @Author: Jan-Philipp Reich (Jan Reich) aus Dortmund wohnhaft in NRW
- * @Version: 0.68 Beta
+ * @Version: 0.71 Beta
  * @since 20.04.2017
  *
  * Alle Rechte vorbehalten (All rights reserved). Für Bildungszwecke zur freien Verwendung (mit der Angabe des Autoren der Engine)
@@ -62,7 +62,8 @@ public class MainProgram {
             DatabaseConnector connector = new DatabaseConnector(mySQLConfig.getHost(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUsername(), mySQLConfig.getPassword());
 
             MyLogger.engineInformation("[Engine] Laden der Engine abgeschlossen!");
-            new GameManager(display, connector);
+            GameManager gameManager = new GameManager(display, connector);
+            display.getActivePanel().drawObjectOnPanel(gameManager);
         } else {
 
             MyLogger.engineInformation("[Engine] Laden der Engine abgeschlossen!");
