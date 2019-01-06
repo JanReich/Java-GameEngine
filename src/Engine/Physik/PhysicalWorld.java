@@ -3,8 +3,7 @@ package Engine.Physik;
 import Engine.Graphics.Display;
 import Engine.Graphics.Interfaces.TimeBasedObject;
 import Engine.Logger.MyLogger;
-import Engine.Physik.PhysicalObjects.PhysicalObject;
-import Engine.Physik.PhysicalObjects.Rectangle;
+import Engine.Physik.PhysicalObjects.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -84,7 +83,7 @@ public abstract class PhysicalWorld implements TimeBasedObject {
         for (PhysicalObject pObject : physicalObjects) {
             for(PhysicalObject sObject : staticObjects) {
 
-                if(pObject instanceof Rectangle && sObject instanceof  Rectangle) {
+                if(pObject instanceof Rectangle && sObject instanceof Rectangle) {
 
                     if(pObject.getPosition().getX() < sObject.getPosition().getX() + ((Rectangle) sObject).getWidth()  &&
                         sObject.getPosition().getX() < pObject.getPosition().getX() + ((Rectangle) pObject).getWidth()  &&
@@ -109,11 +108,43 @@ public abstract class PhysicalWorld implements TimeBasedObject {
                             pObject2.getPosition().getX() < pObject.getPosition().getX() + ((Rectangle) pObject).getWidth()  &&
                             pObject.getPosition().getY() < pObject2.getPosition().getY() + ((Rectangle) pObject2).getHeight() &&
                             pObject2.getPosition().getY() < pObject.getPosition().getY() + ((Rectangle) pObject).getHeight()) {
-
                         onCollisionBetweenPhysicalObjects(pObject, pObject2);
                     }
 
+                    else if(pObject instanceof Triangle && pObject2 instanceof Triangle) {
 
+
+                    }
+
+                    else if((pObject instanceof Triangle && pObject2 instanceof Rectangle) || (pObject instanceof Rectangle && pObject2 instanceof Triangle)) {
+
+
+                    }
+
+                    else if(pObject instanceof Circle && pObject2 instanceof Circle) {
+
+
+                    }
+
+                    else if((pObject instanceof Circle && pObject2 instanceof Rectangle) || (pObject instanceof Rectangle && pObject2 instanceof Circle)) {
+
+
+                    }
+
+                   else if((pObject instanceof Circle && pObject2 instanceof  Triangle) || (pObject instanceof Triangle && pObject2 instanceof Circle)) {
+
+
+                    }
+
+                   else if((pObject instanceof Circle && pObject2 instanceof Ellipse) || (pObject instanceof Ellipse && pObject2 instanceof Circle)) {
+
+
+                    }
+
+                    else if(pObject instanceof Ellipse && pObject instanceof Ellipse) {
+
+
+                    }
                 }
             }
         }
@@ -168,6 +199,22 @@ public abstract class PhysicalWorld implements TimeBasedObject {
                 }
             }
 
+            else if(object instanceof Triangle) {
+
+
+            }
+
+            else if(object instanceof Circle) {
+
+
+            }
+
+            else if(object instanceof Ellipse) {
+
+
+            }
+
+
 
         }
     }
@@ -192,6 +239,24 @@ public abstract class PhysicalWorld implements TimeBasedObject {
                     MyLogger.engineInformation("[Engine] Ein Objekt vom Typ Rechteck ist nun aktiv: Es ist nun wieder sichtbar!");
                 }
             }
+
+            else if(object instanceof Triangle) {
+
+
+            }
+
+            else if(object instanceof Circle) {
+
+
+            }
+
+            else if(object instanceof Ellipse) {
+
+
+            }
+
+
+
         }
     }
 }

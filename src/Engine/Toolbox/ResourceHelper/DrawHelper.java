@@ -2,6 +2,8 @@ package Engine.Toolbox.ResourceHelper;
 
 import Engine.Logger.MyLogger;
 import Engine.Physik.PhysicalObjects.Rectangle;
+import Engine.Physik.PhysicalObjects.Triangle;
+import Engine.Toolbox.Math.Point2f;
 
 import java.awt.*;
 import java.awt.geom.Area;
@@ -24,44 +26,105 @@ public class DrawHelper {
 
         //---------- DRAW-STRING ----------
 
-    public void drawString(String message, int x, int y) {
+    public void drawString(String message, float x, float y) {
 
         if(message != null)
             g2d.drawString(message, x, y);
         else addLogMessage(1);
     }
 
-    public void drawString(String message, int x, int y, int width) {
+    public void drawStringBehind(String message, float x, float y) {
+
+        if(message != null)
+            g2d.drawString(message, (x - getFontWidth(message)), y);
+        else addLogMessage(1);
+    }
+
+    public void drawString(String message, float x, float y, int width) {
 
         if(message != null)
             g2d.drawString(message, x + (width - getFontWidth(message)) / 2, y);
         else addLogMessage(1);
     }
 
-        //---------- DRAW-Image ----------
+        //---------- Triangle ----------
 
-    public void drawImage(Image image, int x, int y) {
+    public void drawTriangle(Polygon polygon) {
+
+        g2d.drawPolygon(polygon);
+    }
+
+    public void drawTriangle(Triangle triangle) {
+
+        Polygon polygon = getPolygon(triangle.getPoint1(), triangle.getPoint2(), triangle.getPoint3());
+        g2d.drawPolygon(polygon);
+    }
+
+    public void drawTriangle(Point2f point1, Point2f point2, Point2f point3) {
+
+        Polygon polygon = getPolygon(point1, point2, point3);
+        g2d.drawPolygon(polygon);
+    }
+
+    public void fillTriangle(Polygon polygon) {
+
+
+        g2d.fillPolygon(polygon);
+    }
+
+    public void fillTriangle(Triangle triangle) {
+
+        Polygon polygon = getPolygon(triangle.getPoint1(), triangle.getPoint2(), triangle.getPoint3());
+        g2d.fillPolygon(polygon);
+    }
+
+    public void fillTriangle(Point2f point1, Point2f point2, Point2f point3) {
+
+        Polygon polygon = getPolygon(point1, point2, point3);
+
+        g2d.fillPolygon(polygon);
+    }
+
+    private Polygon getPolygon(Point2f point1, Point2f point2, Point2f point3) {
+
+        Polygon polygon = new Polygon();
+        polygon.addPoint((int) point1.getX(), (int) point1.getY());
+        polygon.addPoint((int) point2.getX(), (int) point2.getY());
+        polygon.addPoint((int) point3.getX(), (int) point3.getY());
+        return polygon;
+    }
+
+        //---------- Images ----------
+
+    public void drawImage(Image image, float x, float y) {
 
         if(image != null)
-            drawImage(image, x, y, image.getWidth(), image.getHeight());
+            drawImage(image, (int) x, (int) y, image.getWidth(), image.getHeight());
         else addLogMessage(0);
     }
 
-    public void drawImage(BufferedImage image, int x, int y, int scale) {
+    public void drawImage(BufferedImage image, float x, float y, int scale) {
+
+        if(image != null)
+            this.drawImage(image, (int) x, (int) y, scale, scale);
+        else addLogMessage(0);
+    }
+
+    public void drawImage(BufferedImage image, float x, float y, int width, int height) {
+
+        if(image != null)
+            g2d.drawImage(image, (int) x, (int) y, width, height, null);
+        else addLogMessage(0);
+    }
+
+        //---------- Draw-Image (Klasse) ----------
+
+    public void drawImage(Image image, int x, int y, int scale) {
 
         if(image != null)
             this.drawImage(image, x, y, scale, scale);
         else addLogMessage(0);
     }
-
-    public void drawImage(BufferedImage image, int x, int y, int width, int height) {
-
-        if(image != null)
-            g2d.drawImage(image, x, y, width, height, null);
-        else addLogMessage(0);
-    }
-
-        //---------- Draw-Image (Klasse) ----------
 
     public void drawImage(Image image, int x, int y, int width, int height) {
 
@@ -85,21 +148,21 @@ public class DrawHelper {
     }
 
         //---------- Draw Line ----------
-    public void drawLine(int x, int y, int x2, int y2) {
+    public void drawLine(float x, float y, float x2, float y2) {
 
-        if(g2d != null) g2d.drawLine(x, y, x2 ,y2);
+        if(g2d != null) g2d.drawLine((int) x, (int) y, (int) x2, (int) y2);
     }
 
         //---------- DRAW / FILL-Rec ----------
 
-    public void drawRec(int x, int y, int scale) {
+    public void drawRec(float x, float y, int scale) {
 
         this.drawRec(x, y, scale, scale);
     }
 
-    public void drawRec(int x, int y, int width, int height) {
+    public void drawRec(float x, float y, int width, int height) {
 
-        g2d.drawRect(x, y, width, height);
+        g2d.drawRect((int) x, (int) y, width, height);
     }
 
     public void drawRec(Rectangle rectangle) {
@@ -107,14 +170,14 @@ public class DrawHelper {
         g2d.drawRect((int) rectangle.getPosition().getX(), (int) rectangle.getPosition().getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
     }
 
-    public void fillRec(int x, int y, int scale) {
+    public void fillRec(float x, float y, int scale) {
 
         this.fillRec(x, y, scale, scale);
     }
 
-    public void fillRec(int x, int y, int width, int height) {
+    public void fillRec(float x, float y, int width, int height) {
 
-        g2d.fillRect(x, y, width, height);
+        g2d.fillRect((int) x, (int) y, width, height);
     }
 
     public void fillRec(Rectangle rectangle) {
@@ -124,45 +187,45 @@ public class DrawHelper {
 
         //---------- DRAW-RoundRec ----------
 
-    public void drawRoundRec(int x, int y, int scale, int arc) {
+    public void drawRoundRec(float x, float y, int scale, int arc) {
 
-        this.drawRoundRec(x, y, scale, scale, arc);
+        this.drawRoundRec((int) x, (int) y, scale, scale, arc);
     }
 
-    public void drawRoundRec(int x, int y, int width, int height, int arc) {
+    public void drawRoundRec(float x, float y, int width, int height, int arc) {
 
-        g2d.drawRoundRect(x, y, width, height, arc, arc);
+        g2d.drawRoundRect((int) x, (int) y, width, height, arc, arc);
     }
 
-    public void fillRoundRec(int x, int y, int scale, int arc) {
+    public void fillRoundRec(float x, float y, int scale, int arc) {
 
-        this.fillRoundRec(x, y, scale, scale, arc);
+        this.fillRoundRec((int) x, (int) y, scale, scale, arc);
     }
 
-    public void fillRoundRec(int x, int y, int width, int height, int arc) {
+    public void fillRoundRec(float x, float y, int width, int height, int arc) {
 
-        g2d.fillRoundRect(x, y, width, height, arc, arc);
+        g2d.fillRoundRect((int) x, (int) y, width, height, arc, arc);
     }
 
         //---------- Draw Ellipse ----------
-    public void drawOval(int x, int y, int scale) {
+    public void drawOval(float x, float y, int scale) {
 
         this.drawOval(x, y, scale);
     }
 
-    public void drawOval(int x, int y, int width, int height) {
+    public void drawOval(float x, float y, int width, int height) {
 
-        if(g2d != null) g2d.drawOval(x, y, width, height);
+        if(g2d != null) g2d.drawOval((int) x, (int) y, width, height);
     }
 
-    public void fillOval(int x, int y, int scale) {
+    public void fillOval(float x, float y, int scale) {
 
-        this.fillOval(x, y, scale, scale);
+        this.fillOval((int) x, (int) y, scale, scale);
     }
 
-    public void fillOval(int x, int y, int width, int height) {
+    public void fillOval(float x, float y, int width, int height) {
 
-        if(g2d != null) g2d.fillOval(x, y, width, height);
+        if(g2d != null) g2d.fillOval((int) x, (int) y, width, height);
     }
 
         //---------- Draw HollowCircle ----------
@@ -244,9 +307,7 @@ public class DrawHelper {
 
     public void setColor(Engine.Graphics.Color color) {
 
-        if(color != null)
-            g2d.setColor(new Color(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha()));
-        else addLogMessage(2);
+        this.setColor(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
     }
 
     public void setColor(int r, int g, int b) {

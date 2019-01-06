@@ -13,6 +13,7 @@ public class GameManager implements GraphicalObject {
             //Referenzen
         private Display display;
 
+
     /**
      * Dieser Konstruktor wird aufgerufen, wenn in der Config MySQL deaktiviert ist.
      */
@@ -26,13 +27,15 @@ public class GameManager implements GraphicalObject {
      */
     public GameManager(Display display, DatabaseConnector connector) {
 
-
         this.display = display;
+
+
+        Layout layout = new Layout(display);
+        display.getActivePanel().drawObjectOnPanel(layout);
     }
 
     @Override
     public void draw(DrawHelper draw) {
-
 
     }
 }

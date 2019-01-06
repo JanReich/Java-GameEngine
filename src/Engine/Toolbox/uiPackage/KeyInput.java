@@ -269,7 +269,6 @@ public class KeyInput implements KeyInterface {
     }
 
             //---------- GETTER AND SETTER ----------
-
     public boolean isTyping() {
 
         return typing;

@@ -1,6 +1,8 @@
 package Engine.Toolbox.ResourceHelper;
 
+import Engine.Graphics.Color;
 import Engine.Logger.MyLogger;
+import jdk.nashorn.internal.runtime.logging.Logger;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;
@@ -57,6 +59,17 @@ public class Image {
         }
     }
 
+    public void setPixelColor(int x, int y, Color color) {
+
+        image.setRGB(x, y, color.getRGBA());
+    }
+
+    /**
+     * Das Bild wird um den degree-Wert rotiert.
+     * Aktuell befindet sich in dieser Methode aber ein Bug,
+     * beim rotieren kann es sein, dass das Bild teilweise
+     * abgeschnitten wird.
+     */
     public void rotate(int degree) {
 
         MyLogger.warn("[<b>Engine-Bug</b>] Achtung bei der Rotation eines Images kommt es in der aktuellen Engine-Version noch zu einem Fehler. Teile des rotierten Images koennten abgeschnitten sein");
@@ -66,6 +79,11 @@ public class Image {
 
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
         image = op.filter(image, null);
+    }
+
+    public int getPixelColor(int x, int y, Color pixelOut) {
+
+        return image.getRGB(x, y);
     }
 
         // ---------- GETTER AND SETTER ----------

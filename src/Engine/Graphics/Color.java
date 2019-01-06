@@ -158,7 +158,7 @@ public class Color {
 
     public Color(float r, float g, float b) {
 
-        this(r, g, b, 1);
+        this(r, g, b, 255);
     }
 
     public Color(int rgba) {
@@ -177,10 +177,14 @@ public class Color {
 
     public Color(float red, float green, float blue, float alpha) {
 
-        this.red = red;
-        this.blue = blue;
-        this.green = green;
-        this.alpha = alpha;
+        if(red > 1) this.red = red / 255;
+        else this.red = red;
+        if(blue > 1) this.blue = blue / 255;
+        else this.blue = blue;
+        if(green > 1) this.green = green / 255;
+        else this.green = green;
+        if(alpha > 1) this.alpha = alpha / 255;
+        else this.alpha = alpha;
     }
 
     public static Color random() {
@@ -194,24 +198,29 @@ public class Color {
     }
 
         //---------- GETTER AND SETTER ----------\\
-    public float getRed() {
+    public int getRed() {
 
-        return red;
+        return (int) (this.red * 255f);
     }
 
-    public float getGreen() {
+    public int getGreen() {
 
-        return green;
+        return (int) (this.green * 255f);
     }
 
-    public float getBlue() {
+    public int getBlue() {
 
-        return blue;
+        return (int) (this.blue * 255f);
     }
 
-    public float getAlpha() {
+    public int getAlpha() {
 
-        return alpha;
+        return (int) (this.alpha * 255f);
+    }
+
+    public int getRGBA() {
+
+        return getRed() << 24 | getGreen() << 16 | getBlue() << 8 | getAlpha();
     }
 
     @Override
