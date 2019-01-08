@@ -1,8 +1,8 @@
-package Engine.Graphics;
+package engine.graphics;
 
-import Engine.ConfigSystem.DisplayConfig;
-import Engine.Graphics.Interfaces.WindowEventListener;
-import Engine.Logger.MyLogger;
+import engine.configSystem.DisplayConfig;
+import engine.graphics.interfaces.WindowEventListener;
+import engine.logger.MyLogger;
 
 import javax.swing.*;
 import java.awt.event.WindowEvent;
@@ -17,11 +17,11 @@ public class EventListener implements WindowEventListener {
 
     public EventListener(Display display, DisplayConfig config) {
 
-        MyLogger.engineInformation("[Engine] EventListener wird geladen...");
+        MyLogger.engineInformation("[engine] EventListener wird geladen...");
         this.config = config;
         this.display = display;
         display.addWindowListener(this);
-        MyLogger.engineInformation("[Engine] EventLister: Waiting for events...");
+        MyLogger.engineInformation("[engine] EventLister: Waiting for events...");
     }
 
     @Override
@@ -39,7 +39,7 @@ public class EventListener implements WindowEventListener {
 
             if (n == 0) {
 
-                MyLogger.engineInformation("[Engine] Das Programm wurde beendet.");
+                MyLogger.engineInformation("[engine] Das Programm wurde beendet.");
                 System.exit(0);
             }
         } else System.exit(0);

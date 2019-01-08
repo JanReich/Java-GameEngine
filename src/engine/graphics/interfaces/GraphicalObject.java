@@ -1,6 +1,6 @@
-package Engine.Graphics.Interfaces;
+package engine.graphics.interfaces;
 
-import Engine.Toolbox.ResourceHelper.DrawHelper;
+import engine.toolbox.resourceHelper.DrawHelper;
 
 public interface GraphicalObject {
 

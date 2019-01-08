@@ -1,7 +1,7 @@
-package Engine.Abitur.Database;
+package engine.abitur.database;
 
-import Engine.Abitur.Datenstruckturen.Queue;
-import Engine.Logger.MyLogger;
+import engine.abitur.datenstrukturen.Queue;
+import engine.logger.MyLogger;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

@@ -1,4 +1,4 @@
-package Engine.Graphics;
+package engine.graphics;
 
 public class Color {
 

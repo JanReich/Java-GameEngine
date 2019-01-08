@@ -1,9 +1,7 @@
-package Engine.Toolbox.System;
+package engine.toolbox.system;
 
-import Engine.Graphics.Interfaces.GraphicalObject;
-import Engine.Logger.MyLogger;
-import Engine.Toolbox.ResourceHelper.DrawHelper;
-import Engine.Toolbox.ResourceHelper.Image;
+import engine.logger.MyLogger;
+import engine.toolbox.resourceHelper.Image;
 
 public class Spritesheet {
 
@@ -22,7 +20,7 @@ public class Spritesheet {
 
     public Spritesheet(Image image, int imagesRow, int imagesCol) {
 
-        MyLogger.engineInformation("[Engine] Ein neues Spritesheet wird erstellt...");
+        MyLogger.engineInformation("[engine] Ein neues Spritesheet wird erstellt...");
         this.imagesRow = imagesRow;
         this.imagesCol = imagesCol;
         this.spritesheet = image;
@@ -46,8 +44,8 @@ public class Spritesheet {
                 }
             }
 
-            MyLogger.engineInformation("[Engine] Laden des Spritesheet wurde erfolgreich abgeschlossen!");
-        } else MyLogger.warn("[<b>Engine</b>] Ungültige Angaben beim erstellen eines Spritesheets. Row and Col must be great or equal to 1!");
+            MyLogger.engineInformation("[engine] Laden des Spritesheet wurde erfolgreich abgeschlossen!");
+        } else MyLogger.warn("[<b>engine</b>] Ungültige Angaben beim erstellen eines Spritesheets. Row and Col must be great or equal to 1!");
     }
 
     /**
@@ -59,7 +57,7 @@ public class Spritesheet {
             return images[x][y];
         else {
 
-            MyLogger.error("[<b>Engine</b>] Ungueltige Auswhahl eines Bildes im Spritesheets. Es existiert kein Bild im Spritesheet mit dem Index: [" + x + "]-[" + y + "]");
+            MyLogger.error("[<b>engine</b>] Ungueltige Auswhahl eines Bildes im Spritesheets. Es existiert kein Bild im Spritesheet mit dem Index: [" + x + "]-[" + y + "]");
             return null;
         }
     }

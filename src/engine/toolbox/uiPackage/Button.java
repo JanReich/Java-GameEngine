@@ -1,9 +1,9 @@
-package Engine.Toolbox.uiPackage;
+package engine.toolbox.uiPackage;
 
-import Engine.Graphics.Interfaces.AdvancedMouseInterface;
-import Engine.Toolbox.Math.Point2f;
-import Engine.Toolbox.ResourceHelper.DrawHelper;
-import Engine.Toolbox.ResourceHelper.Image;
+import engine.graphics.interfaces.AdvancedMouseInterface;
+import engine.toolbox.math.Point2f;
+import engine.toolbox.resourceHelper.DrawHelper;
+import engine.toolbox.resourceHelper.Image;
 
 import java.awt.event.MouseEvent;
 

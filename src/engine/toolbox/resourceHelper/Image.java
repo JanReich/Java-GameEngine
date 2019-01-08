@@ -1,8 +1,7 @@
-package Engine.Toolbox.ResourceHelper;
+package engine.toolbox.resourceHelper;
 
-import Engine.Graphics.Color;
-import Engine.Logger.MyLogger;
-import jdk.nashorn.internal.runtime.logging.Logger;
+import engine.graphics.Color;
+import engine.logger.MyLogger;
 
 import javax.imageio.ImageIO;
 import java.awt.geom.AffineTransform;
@@ -55,7 +54,7 @@ public class Image {
             this.height = image.getHeight();
         } catch (Exception e) {
 
-            MyLogger.error("[Engine] Fehler beim laden eines Bildes...");
+            MyLogger.error("[engine] Fehler beim laden eines Bildes...");
         }
     }
 
@@ -72,7 +71,7 @@ public class Image {
      */
     public void rotate(int degree) {
 
-        MyLogger.warn("[<b>Engine-Bug</b>] Achtung bei der Rotation eines Images kommt es in der aktuellen Engine-Version noch zu einem Fehler. Teile des rotierten Images koennten abgeschnitten sein");
+        MyLogger.warn("[<b>engine-Bug</b>] Achtung bei der Rotation eines Images kommt es in der aktuellen engine-Version noch zu einem Fehler. Teile des rotierten Images koennten abgeschnitten sein");
         double radians = Math.toRadians(degree);
         AffineTransform tx = new AffineTransform();
         tx.rotate(radians, image.getWidth() / 2, image.getHeight() / 2);

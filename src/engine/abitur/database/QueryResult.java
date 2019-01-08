@@ -1,4 +1,4 @@
-package Engine.Abitur.Database;
+package engine.abitur.database;
 
 /**
  * <p>

@@ -1,9 +1,9 @@
-package Engine.Graphics.Panels;
+package engine.graphics.panels;
 
-import Engine.ConfigSystem.DisplayConfig;
-import Engine.Graphics.Interfaces.*;
-import Engine.Logger.MyLogger;
-import Engine.Toolbox.ResourceHelper.DrawHelper;
+import engine.configSystem.DisplayConfig;
+import engine.graphics.interfaces.*;
+import engine.logger.MyLogger;
+import engine.toolbox.resourceHelper.DrawHelper;
 
 import javax.swing.*;
 import javax.swing.Timer;
@@ -53,7 +53,7 @@ public class DrawingPanel extends Panel implements KeyListener, MouseListener, M
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
 
-            //Graphics setzen oder updaten
+            //graphics setzen oder updaten
         if(!(drawHelper != null)) drawHelper = new DrawHelper(g2d);
         else drawHelper.updateGraphics(g2d);
 
@@ -146,8 +146,8 @@ public class DrawingPanel extends Panel implements KeyListener, MouseListener, M
 
                 SwingUtilities.invokeLater(() -> timeBasedObjects.add((TimeBasedObject) object));
                 SwingUtilities.invokeLater(() -> graphicalObjects.put((GraphicalObject) object, index));
-            } else MyLogger.warn("[Engine] Das Objekt ist nicht gleichzeitig GraphicalObject und TimebasedObject - Fehler beim hinzufügen zum Drawingpanel");
-        } else MyLogger.warn("[Engine] Es wird versucht ein Object == null zum Drawingpannel hinzuzufügen.");
+            } else MyLogger.warn("[engine] Das Objekt ist nicht gleichzeitig GraphicalObject und TimebasedObject - Fehler beim hinzufügen zum Drawingpanel");
+        } else MyLogger.warn("[engine] Es wird versucht ein Object == null zum Drawingpannel hinzuzufügen.");
     }
 
         //TimebasedObject

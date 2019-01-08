@@ -1,4 +1,4 @@
-package Engine.Toolbox.Math;
+package engine.toolbox.math;
 
 public class Math2D {
 

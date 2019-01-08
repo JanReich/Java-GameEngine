@@ -1,10 +1,9 @@
-package Engine.Toolbox.uiPackage;
+package engine.toolbox.uiPackage;
 
-import Engine.Graphics.Interfaces.KeyInterface;
-import Engine.Toolbox.ResourceHelper.DrawHelper;
-import Engine.Toolbox.System.Clipboard;
+import engine.graphics.interfaces.KeyInterface;
+import engine.toolbox.resourceHelper.DrawHelper;
+import engine.toolbox.system.Clipboard;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 public class KeyInput implements KeyInterface {

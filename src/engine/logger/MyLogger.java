@@ -1,7 +1,7 @@
-package Engine.Logger;
+package engine.logger;
 
-import Engine.Toolbox.ResourceHelper.FileHelper;
-import Engine.Toolbox.System.SystemHelper;
+import engine.toolbox.resourceHelper.FileHelper;
+import engine.toolbox.system.SystemHelper;
 
 import java.io.IOException;
 import java.util.logging.*;
@@ -22,7 +22,7 @@ public class MyLogger {
     public static void setup() {
 
         try {
-            // get the global logger to configure it
+                // get the global logger to configure it
             Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
             Logger rootLogger = Logger.getLogger("");
             Handler[] handlers = rootLogger.getHandlers();
@@ -94,7 +94,7 @@ public class MyLogger {
     }
 
     /**
-     * Informationen aus der Engine werden mit dieser Methode in den Logs gespeichert
+     * Informationen aus der engine werden mit dieser Methode in den Logs gespeichert
      */
     public static void engineInformation(String message) {
 

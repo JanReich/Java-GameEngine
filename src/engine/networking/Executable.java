@@ -1,4 +1,4 @@
-package Engine.Networking;
+package engine.networking;
 
 import java.net.Socket;
 

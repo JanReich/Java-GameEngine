@@ -1,6 +1,6 @@
-package Engine.Physik.PhysicalObjects;
+package engine.physik.PhysicalObjects;
 
-import Engine.Toolbox.Math.Point2f;
+import engine.toolbox.math.Point2f;
 
 public class Rectangle extends PhysicalObject {
 

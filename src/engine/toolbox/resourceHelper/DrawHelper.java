@@ -1,9 +1,9 @@
-package Engine.Toolbox.ResourceHelper;
+package engine.toolbox.resourceHelper;
 
-import Engine.Logger.MyLogger;
-import Engine.Physik.PhysicalObjects.Rectangle;
-import Engine.Physik.PhysicalObjects.Triangle;
-import Engine.Toolbox.Math.Point2f;
+import engine.logger.MyLogger;
+import engine.physik.PhysicalObjects.Rectangle;
+import engine.physik.PhysicalObjects.Triangle;
+import engine.toolbox.math.Point2f;
 
 import java.awt.*;
 import java.awt.geom.Area;
@@ -305,7 +305,7 @@ public class DrawHelper {
         else addLogMessage(2);
     }
 
-    public void setColor(Engine.Graphics.Color color) {
+    public void setColor(engine.graphics.Color color) {
 
         this.setColor(color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
     }
@@ -355,14 +355,14 @@ public class DrawHelper {
     public void addLogMessage(int type) {
 
         if(type == 0)
-            MyLogger.error("[<b>Engine-Error</b>] Es wird versucht ein Bild == null zu zeichnen.");
+            MyLogger.error("[<b>engine-Error</b>] Es wird versucht ein Bild == null zu zeichnen.");
         else if(type == 1)
-            MyLogger.error("[<b>Engine-Error</b>] Es wird versucht ein String == null zu zeichnen.");
+            MyLogger.error("[<b>engine-Error</b>] Es wird versucht ein String == null zu zeichnen.");
         else if(type == 2)
-            MyLogger.error("[<b>Engine-Error</b>] Es wird versucht mit einer Farbe == null ein Objekt zu zeichnen.");
+            MyLogger.error("[<b>engine-Error</b>] Es wird versucht mit einer Farbe == null ein Objekt zu zeichnen.");
         else if(type == 3)
-            MyLogger.error("[<b>Engine-Error</b>] Es wird versucht mit einer Font == null ein String zu zeichnen.");
+            MyLogger.error("[<b>engine-Error</b>] Es wird versucht mit einer Font == null ein String zu zeichnen.");
         else
-            MyLogger.error("[<b>Engine-Error</b>] Ein bislang unbekannter (in der DrawHelper-Klasse) Fehler ist aufgetreten!");
+            MyLogger.error("[<b>engine-Error</b>] Ein bislang unbekannter (in der DrawHelper-Klasse) Fehler ist aufgetreten!");
     }
 }

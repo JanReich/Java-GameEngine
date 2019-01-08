@@ -1,4 +1,4 @@
-package Engine.Graphics.Panels;
+package engine.graphics.panels;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,26 +1,26 @@
-package Engine;
+package engine;
 
-import Engine.Abitur.Database.DatabaseConnector;
-import Engine.ConfigSystem.DisplayConfig;
-import Engine.ConfigSystem.GameConfig;
-import Engine.ConfigSystem.MySQLConfig;
-import Engine.Graphics.Display;
-import Engine.Graphics.EventListener;
-import Engine.Logger.MyLogger;
-import GamePackage.GameManager;
+import engine.abitur.database.DatabaseConnector;
+import engine.configSystem.DisplayConfig;
+import engine.configSystem.GameConfig;
+import engine.configSystem.MySQLConfig;
+import engine.graphics.Display;
+import engine.graphics.EventListener;
+import engine.logger.MyLogger;
+import gamePackage.GameManager;
 
 import javax.swing.*;
 
 /**
- * GitHub-Link zur Engine:
+ * GitHub-Link zur engine:
  * Bug-Reports oder gewünschte Features per Mail an: Jan.reich@mail.de
- * Entwicklungsstatus der Engine (Überblick über kommende Features): https://trello.com/b/I2jmqmZQ/engine
+ * Entwicklungsstatus der engine (Überblick über kommende Features): https://trello.com/b/I2jmqmZQ/engine
  *
  * @Author: Jan-Philipp Reich (Jan Reich) aus Dortmund wohnhaft in NRW
  * @Version: 0.71 Beta
  * @since 20.04.2017
  *
- * Alle Rechte vorbehalten (All rights reserved). Für Bildungszwecke zur freien Verwendung (mit der Angabe des Autoren der Engine)
+ * Alle Rechte vorbehalten (All rights reserved). Für Bildungszwecke zur freien Verwendung (mit der Angabe des Autoren der engine)
  */
 public class MainProgram {
 
@@ -35,8 +35,8 @@ public class MainProgram {
     public MainProgram() {
 
         MyLogger.setup();
-        MyLogger.engineInformation("[Engine] Engine by Jan - All rights reserved!");
-        MyLogger.engineInformation("[Engine] Engine wird geladen...");
+        MyLogger.engineInformation("[engine] engine by Jan - All rights reserved!");
+        MyLogger.engineInformation("[engine] engine wird geladen...");
         this.gameConfig = new GameConfig();
         this.displayConfig = new DisplayConfig();
 
@@ -61,12 +61,12 @@ public class MainProgram {
             MyLogger.engineInformation("[<b>MySQL</b>] Verbindung zur Datenbank wird hergestellt...");
             DatabaseConnector connector = new DatabaseConnector(mySQLConfig.getHost(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUsername(), mySQLConfig.getPassword());
 
-            MyLogger.engineInformation("[Engine] Laden der Engine abgeschlossen!");
+            MyLogger.engineInformation("[engine] Laden der engine abgeschlossen!");
             GameManager gameManager = new GameManager(display, connector);
             display.getActivePanel().drawObjectOnPanel(gameManager);
         } else {
 
-            MyLogger.engineInformation("[Engine] Laden der Engine abgeschlossen!");
+            MyLogger.engineInformation("[engine] Laden der engine abgeschlossen!");
             new GameManager(display);
         }
     }

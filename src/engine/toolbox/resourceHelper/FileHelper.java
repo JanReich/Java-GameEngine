@@ -1,4 +1,4 @@
-package Engine.Toolbox.ResourceHelper;
+package engine.toolbox.resourceHelper;
 
 import java.io.*;
 import java.util.HashMap;
@@ -118,7 +118,7 @@ public class FileHelper {
                 }
 
                 FileOutputStream writer = new FileOutputStream(file);
-                properties.store(writer, "Writing properties to System.out stream");
+                properties.store(writer, "Writing properties to system.out stream");
                 writer.close();
             } catch (IOException e) {
 

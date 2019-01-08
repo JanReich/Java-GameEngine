@@ -1,9 +1,9 @@
-package Engine.Physik;
+package engine.physik;
 
-import Engine.Graphics.Display;
-import Engine.Graphics.Interfaces.TimeBasedObject;
-import Engine.Logger.MyLogger;
-import Engine.Physik.PhysicalObjects.*;
+import engine.graphics.Display;
+import engine.graphics.interfaces.TimeBasedObject;
+import engine.logger.MyLogger;
+import engine.physik.PhysicalObjects.*;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public abstract class PhysicalWorld implements TimeBasedObject {
 
     public PhysicalWorld(Display display) {
 
-        MyLogger.engineInformation("[Engine] Physikalische Umgebung wurde gestartet...");
+        MyLogger.engineInformation("[engine] Physikalische Umgebung wurde gestartet...");
 
         this.display = display;
 
@@ -165,14 +165,14 @@ public abstract class PhysicalWorld implements TimeBasedObject {
 
     public void removePhysicalObject(PhysicalObject object) {
 
-        MyLogger.info("[Engine] Ein neues statisches Objekt wurde in der Welt registiert und wird nun von der PhysicalWorld beeinflusst");
+        MyLogger.info("[engine] Ein neues statisches Objekt wurde in der Welt registiert und wird nun von der PhysicalWorld beeinflusst");
         if(object != null && physicalObjects != null)
             SwingUtilities.invokeLater(() -> physicalObjects.remove(object));
     }
 
     public void registerPhysicalObject(PhysicalObject object) {
 
-        MyLogger.info("[Engine] Ein neues physikalisches Objekt wurde in der Welt registiert und wird nun von der PhysicalWorld beeinflusst");
+        MyLogger.info("[engine] Ein neues physikalisches Objekt wurde in der Welt registiert und wird nun von der PhysicalWorld beeinflusst");
         if(object != null && physicalObjects != null)
             SwingUtilities.invokeLater(() -> physicalObjects.add(object));
     }
@@ -195,7 +195,7 @@ public abstract class PhysicalWorld implements TimeBasedObject {
                     SwingUtilities.invokeLater(() -> addObjects.add(object));
 
                     onDisappearFromDisplay(object);
-                    MyLogger.engineInformation("[Engine] Ein Objekt vom Typ Rechteck ist nun inaktiv: Es ist nicht mehr sichtbar!");
+                    MyLogger.engineInformation("[engine] Ein Objekt vom Typ Rechteck ist nun inaktiv: Es ist nicht mehr sichtbar!");
                 }
             }
 
@@ -236,7 +236,7 @@ public abstract class PhysicalWorld implements TimeBasedObject {
                     SwingUtilities.invokeLater(() -> addObjects .add(object));
 
                     onAppearOnDisplay(object);
-                    MyLogger.engineInformation("[Engine] Ein Objekt vom Typ Rechteck ist nun aktiv: Es ist nun wieder sichtbar!");
+                    MyLogger.engineInformation("[engine] Ein Objekt vom Typ Rechteck ist nun aktiv: Es ist nun wieder sichtbar!");
                 }
             }
 

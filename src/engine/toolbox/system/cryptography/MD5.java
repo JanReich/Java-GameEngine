@@ -1,6 +1,6 @@
-package Engine.Toolbox.System.Cryptography;
+package engine.toolbox.system.cryptography;
 
-import Engine.Logger.MyLogger;
+import engine.logger.MyLogger;
 
 import java.security.NoSuchAlgorithmException;
 
@@ -12,7 +12,7 @@ public class MD5 {
 
     public static String ENCODE(String md5) {
 
-        MyLogger.info("[Engine] Ein String wird MD5 verschlüsselt...");
+        MyLogger.info("[engine] Ein String wird MD5 verschlüsselt...");
         try {
 
             java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");
@@ -24,7 +24,7 @@ public class MD5 {
         } catch (NoSuchAlgorithmException e) {
 
             e.printStackTrace();
-            MyLogger.fatalError("[<b>Engine</b>] Fehler beim MD5 verschlüsseln!");
+            MyLogger.fatalError("[<b>engine</b>] Fehler beim MD5 verschlüsseln!");
             return null;
         }
     }

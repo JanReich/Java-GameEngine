@@ -1,6 +1,6 @@
-package Engine.Logger;
+package engine.logger;
 
-import Engine.Toolbox.System.SystemHelper;
+import engine.toolbox.system.SystemHelper;
 
 import java.util.logging.*;
 
@@ -25,7 +25,7 @@ public class HtmlFormatter extends Formatter {
 
             buf.append("\t\t\t\t<td>");
             if(rec.getLevel().intValue() == 500)
-                buf.append("Engine-Info");
+                buf.append("engine-Info");
             else if(rec.getLevel().intValue() == 400)
                 buf.append("Debug-Info");
             else if(rec.getLevel().intValue() == 800)
@@ -74,7 +74,7 @@ public class HtmlFormatter extends Formatter {
         return "\t\t</table>\n" +
                 "\t\t</br></br>\n" +
                 "\t\tKontakt-Mail: Jan.reich@mail.de</br>\n" +
-                "\t\tEngine by Jan-Philipp Reich aus Dortmund\n" +
+                "\t\tengine by Jan-Philipp Reich aus Dortmund\n" +
                 "\t</body>\n" +
                 "</html>";
     }

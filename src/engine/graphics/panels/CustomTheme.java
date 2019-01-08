@@ -1,6 +1,6 @@
-package Engine.Graphics.Panels;
+package engine.graphics.panels;
 
-import Engine.Toolbox.ResourceHelper.FileHelper;
+import engine.toolbox.resourceHelper.FileHelper;
 
 import javax.swing.plaf.*;
 import javax.swing.plaf.metal.*;

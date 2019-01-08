@@ -1,4 +1,4 @@
-package Engine.Graphics.Interfaces;
+package engine.graphics.interfaces;
 
 import java.awt.event.MouseEvent;
 

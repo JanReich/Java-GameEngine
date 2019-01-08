@@ -1,6 +1,6 @@
-package Engine.ConfigSystem;
+package engine.configSystem;
 
-import Engine.Toolbox.ResourceHelper.FileHelper;
+import engine.toolbox.resourceHelper.FileHelper;
 
 import java.io.File;
 

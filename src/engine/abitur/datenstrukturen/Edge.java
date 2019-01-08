@@ -1,4 +1,4 @@
-package Engine.Abitur.Datenstruckturen;
+package engine.abitur.datenstrukturen;
 
 /**
  * <p>

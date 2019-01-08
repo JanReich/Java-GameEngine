@@ -1,11 +1,11 @@
-package Engine.Toolbox.uiPackage;
+package engine.toolbox.uiPackage;
 
-import Engine.Graphics.Display;
-import Engine.Graphics.Interfaces.AdvancedMouseInterface;
-import Engine.Graphics.Interfaces.RemovableObject;
-import Engine.Toolbox.Math.Point2f;
-import Engine.Toolbox.ResourceHelper.DrawHelper;
-import Engine.Toolbox.System.Animation;
+import engine.graphics.Display;
+import engine.graphics.interfaces.AdvancedMouseInterface;
+import engine.graphics.interfaces.RemovableObject;
+import engine.toolbox.math.Point2f;
+import engine.toolbox.resourceHelper.DrawHelper;
+import engine.toolbox.system.Animation;
 
 import java.awt.event.MouseEvent;
 

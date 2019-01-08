@@ -1,4 +1,4 @@
-package Engine.Networking;
+package engine.networking;
 
 import java.net.Socket;
 
@@ -13,7 +13,7 @@ public class MyClient extends Client {
             @Override
             public void run(Datapackage pack, Socket socket) {
 
-                //Die Run-Methode wird jedes Mal ausgeführt, wenn der Server ein Datenpaket mit der Kennung
+                //Die Run-Methode wird jedes Mal ausgeführt, wenn der server ein Datenpaket mit der Kennung
                 //"exampleMessage" erhält.
             }
         });

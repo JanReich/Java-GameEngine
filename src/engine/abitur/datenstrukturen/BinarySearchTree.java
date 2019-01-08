@@ -1,4 +1,4 @@
-package Engine.Abitur.Datenstruckturen;
+package engine.abitur.datenstrukturen;
 
 /**
  * <p>
@@ -17,7 +17,7 @@ package Engine.Abitur.Datenstruckturen;
  * Die Klasse der Objekte, die in dem Suchbaum verwaltet werden sollen, muss
  * das generische Interface ComparableContent implementieren. Dabei muss durch
  * Ueberschreiben der drei Vergleichsmethoden isLess, isEqual, isGreater (s.
- * Dokumentation des Interfaces) eine eindeutige Ordnungsrelation festgelegt
+ * Dokumentation des interfaces) eine eindeutige Ordnungsrelation festgelegt
  * sein. <br />
  * Alle Objekte im linken Teilbaum sind kleiner als das Inhaltsobjekt des
  * binaeren Suchbaums. Alle Objekte im rechten Teilbaum sind groesser als das
