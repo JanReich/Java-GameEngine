@@ -231,30 +231,22 @@ public class DrawHelper {
         //---------- Draw HollowCircle ----------
     public void drawHollowCircle(int centerX, int centerY, int radius, int thickness) {
 
-        if(g2d != null) {
-
-            Ellipse2D outer = new Ellipse2D.Double(centerX- radius, centerY - radius, radius * 2, radius * 2);
-            Ellipse2D inner = new Ellipse2D.Double(centerX - radius + thickness, centerY - radius + thickness, radius * 2 - thickness * 2, radius * 2 - thickness * 2);
-
-            Area area = new Area(outer);
-            area.subtract(new Area(inner));
-
-            g2d.draw(area);
-        }
+        if(g2d != null)  g2d.draw(getHollowCircle(centerX, centerY, radius, thickness));
     }
 
     public void fillHollowCircle(int centerX, int centerY, int radius, int thickness) {
 
-        if(g2d != null) {
+        if(g2d != null) g2d.fill(getHollowCircle(centerX, centerY, radius, thickness));
+    }
 
-            Ellipse2D outer = new Ellipse2D.Double(centerX- radius, centerY - radius, radius * 2, radius * 2);
-            Ellipse2D inner = new Ellipse2D.Double(centerX - radius + thickness, centerY - radius + thickness, radius * 2 - thickness * 2, radius * 2 - thickness * 2);
+    private Area getHollowCircle(int centerX, int centerY, int radius, int thickness) {
 
-            Area area = new Area(outer);
-            area.subtract(new Area(inner));
+        Ellipse2D outer = new Ellipse2D.Double(centerX- radius, centerY - radius, radius * 2, radius * 2);
+        Ellipse2D inner = new Ellipse2D.Double(centerX - radius + thickness, centerY - radius + thickness, radius * 2 - thickness * 2, radius * 2 - thickness * 2);
 
-            g2d.fill(area);
-        }
+        Area area = new Area(outer);
+        area.subtract(new Area(inner));
+        return area;
     }
 
         //---------- Fonts ----------
@@ -355,11 +347,11 @@ public class DrawHelper {
     public void addLogMessage(int type) {
 
         if(type == 0)
-            MyLogger.error("[<b>engine-Error</b>] Es wird versucht ein Bild == null zu zeichnen.");
+            MyLogger.error("[<b>engine-Error</b>] Es wird versucht ein Bild == null zu zeichnen. Überprüfen Sie die Bild datei und den angegebenen Pfad!");
         else if(type == 1)
-            MyLogger.error("[<b>engine-Error</b>] Es wird versucht ein String == null zu zeichnen.");
+            MyLogger.error("[<b>engine-Error</b>] Es wird versucht ein String == null zu zeichnen. Strings müssen vor dem zeichnen mit \"\" initalisiert werden, falls diese noch keinen Inhalt haben!");
         else if(type == 2)
-            MyLogger.error("[<b>engine-Error</b>] Es wird versucht mit einer Farbe == null ein Objekt zu zeichnen.");
+            MyLogger.error("[<b>engine-Error</b>] Es wird versucht mit einer Farbe == null ein Objekt zu zeichnen. Stellen Sie sich sicher, dass Sie die Color-Klasse aus dem Engine-Package benutzen!");
         else if(type == 3)
             MyLogger.error("[<b>engine-Error</b>] Es wird versucht mit einer Font == null ein String zu zeichnen.");
         else

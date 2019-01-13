@@ -8,6 +8,7 @@ public class GameManager extends Game {
             //Attribute
 
             //Referenzen
+        private int[] test;
 
     /**
      * Dieser Konstruktor wird aufgerufen, wenn das laden der Engine abgeschlossen wurde und

@@ -1,8 +1,10 @@
 package engine.logger;
 
+import engine.configSystem.EngineConfig;
 import engine.toolbox.resourceHelper.FileHelper;
 import engine.toolbox.system.SystemHelper;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.logging.*;
 
@@ -11,17 +13,23 @@ public class MyLogger {
             //Attribute
 
             //Referenzen
+        private static String loggingFile;
         private static FileHandler fileHTML;
         private static Formatter formatterHTML;
+
+        private static EngineConfig engineConfig;
 
         private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
 
     /**
      * Die SetUp-Methode initalisiert die benötigten Formatter und Files
      */
-    public static void setup() {
+    public static void setup(EngineConfig config) {
+
+        engineConfig = config;
 
         try {
+
                 // get the global logger to configure it
             Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
             Logger rootLogger = Logger.getLogger("");
@@ -36,6 +44,7 @@ public class MyLogger {
             if(!FileHelper.isFileExisting(FileHelper.getFile("Logging/" + SystemHelper.getDate())))
                 FileHelper.createDir(FileHelper.getFile("Logging/" + SystemHelper.getDate()));
             fileHTML = new FileHandler("res/Logging/" + SystemHelper.getDate() + "/" + "log_" + SystemHelper.getTimeAsFilename() + ".html");
+            loggingFile = "Logging/" + SystemHelper.getDate() + "/" + "log_" + SystemHelper.getTimeAsFilename() + ".html";
 
                 // create an HTML formatter
             formatterHTML = new HtmlFormatter();
@@ -45,6 +54,18 @@ public class MyLogger {
 
             e.printStackTrace();
             System.err.println("[Error] Fehler beim erstellen des Loggers");
+        }
+    }
+
+    public static void openHtmlFile() {
+
+        try {
+
+            Desktop desktop = Desktop.getDesktop();
+            desktop.browse(FileHelper.getFile(loggingFile).toURI());
+        } catch (Exception e) {
+
+            e.printStackTrace();
         }
     }
 
@@ -83,6 +104,8 @@ public class MyLogger {
 
         LOGGER.setLevel(Level.ALL);
         LOGGER.severe(message);
+
+        if(engineConfig.isOpenHtmlFile()) openHtmlFile();
     }
 
     /**
@@ -93,6 +116,7 @@ public class MyLogger {
         LOGGER.setLevel(Level.ALL);
         LOGGER.severe(message);
 
+        if(engineConfig.isOpenHtmlFile()) openHtmlFile();
     }
 
     /**

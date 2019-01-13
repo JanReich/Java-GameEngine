@@ -2,16 +2,17 @@ package engine.configSystem;
 
 import engine.toolbox.resourceHelper.FileHelper;
 
-public class GameConfig extends Config {
+public class EngineConfig extends Config {
 
             //Attribute
         private boolean useMySQL;
+        private boolean openHtmlFile;
 
             //Referenzen
 
-    public GameConfig() {
+    public EngineConfig() {
 
-        super(FileHelper.getFile("Engine/Configs/GameConfig.properties"));
+        super(FileHelper.getFile("Engine/Configs/EngineConfig.properties"));
     }
 
     @Override
@@ -23,6 +24,7 @@ public class GameConfig extends Config {
     public void readConfig() {
 
         useMySQL = Boolean.parseBoolean(FileHelper.getProperty(file, "useMySQL"));
+        openHtmlFile = Boolean.parseBoolean(FileHelper.getProperty(file, "openHtmlFileOnError"));
     }
 
     @Override
@@ -34,5 +36,10 @@ public class GameConfig extends Config {
     public boolean isUseMySQL() {
 
         return useMySQL;
+    }
+
+    public boolean isOpenHtmlFile() {
+
+        return openHtmlFile;
     }
 }

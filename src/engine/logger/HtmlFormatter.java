@@ -74,7 +74,7 @@ public class HtmlFormatter extends Formatter {
         return "\t\t</table>\n" +
                 "\t\t</br></br>\n" +
                 "\t\tKontakt-Mail: Jan.reich@mail.de</br>\n" +
-                "\t\tengine by Jan-Philipp Reich aus Dortmund\n" +
+                "\t\tEngine by Jan-Philipp Reich aus Dortmund\n" +
                 "\t</body>\n" +
                 "</html>";
     }

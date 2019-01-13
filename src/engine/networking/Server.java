@@ -69,8 +69,8 @@ public abstract class Server {
 
         if(logging) {
 
-            MyLogger.info("[<b>server</b>] Ein neuer server auf dem Port: " + port + " wurde gestartet.");
-            MyLogger.info("[<b>server</b>] Der server besitzt folgende Configuration: Autoregister: " + autoRegister + ", Pinging: " + keepConnectionAlive);
+            MyLogger.info("[<b>server</b>] Ein neuer Server auf dem Port: " + port + " wurde gestartet.");
+            MyLogger.info("[<b>server</b>] Der Server besitzt folgende Configuration: Autoregister: " + autoRegister + ", Pinging: " + keepConnectionAlive);
         }
 
         this.minPlayer = minPlayer;

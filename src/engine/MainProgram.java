@@ -2,12 +2,13 @@ package engine;
 
 import engine.abitur.database.DatabaseConnector;
 import engine.configSystem.DisplayConfig;
-import engine.configSystem.GameConfig;
+import engine.configSystem.EngineConfig;
 import engine.configSystem.MySQLConfig;
 import engine.graphics.Display;
 import engine.graphics.EventListener;
 import engine.logger.MyLogger;
 import gamePackage.GameManager;
+import sun.applet.Main;
 
 import javax.swing.*;
 
@@ -28,16 +29,16 @@ public class MainProgram {
 
             //Referenzen
         private Display display;
-        private GameConfig gameConfig;
+        private EngineConfig engineConfig;
         private MySQLConfig mySQLConfig;
         private DisplayConfig displayConfig;
 
     public MainProgram() {
 
-        MyLogger.setup();
+        this.engineConfig = new EngineConfig();
+        MyLogger.setup(engineConfig);
         MyLogger.engineInformation("[engine] engine by Jan - All rights reserved!");
         MyLogger.engineInformation("[engine] engine wird geladen...");
-        this.gameConfig = new GameConfig();
         this.displayConfig = new DisplayConfig();
 
         if(displayConfig.useCustomLayout()) {
@@ -54,7 +55,7 @@ public class MainProgram {
         display = new Display(displayConfig);
         new EventListener(display, displayConfig);
 
-        if(gameConfig.isUseMySQL()) {
+        if(engineConfig.isUseMySQL()) {
 
             MyLogger.engineInformation("[<b>MySQL</b>] Config wird geladen...");
             mySQLConfig = new MySQLConfig();
