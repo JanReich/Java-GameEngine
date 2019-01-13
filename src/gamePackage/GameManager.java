@@ -2,13 +2,14 @@ package gamePackage;
 
 import engine.abitur.database.DatabaseConnector;
 import engine.graphics.Display;
+import engine.graphics.interfaces.GraphicalObject;
+import engine.toolbox.resourceHelper.DrawHelper;
 
-public class GameManager extends Game {
+    public class GameManager extends Game implements GraphicalObject {
 
             //Attribute
 
             //Referenzen
-        private int[] test;
 
     /**
      * Dieser Konstruktor wird aufgerufen, wenn das laden der Engine abgeschlossen wurde und
@@ -30,5 +31,11 @@ public class GameManager extends Game {
     public GameManager(Display display, DatabaseConnector connector) {
 
         super(display, connector);
+    }
+
+    @Override
+    public void draw(DrawHelper draw) {
+
+
     }
 }

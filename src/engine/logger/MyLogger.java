@@ -11,6 +11,7 @@ import java.util.logging.*;
 public class MyLogger {
 
             //Attribute
+        private static boolean opened;
 
             //Referenzen
         private static String loggingFile;
@@ -59,13 +60,17 @@ public class MyLogger {
 
     public static void openHtmlFile() {
 
-        try {
+        if(!opened) {
 
-            Desktop desktop = Desktop.getDesktop();
-            desktop.browse(FileHelper.getFile(loggingFile).toURI());
-        } catch (Exception e) {
+            try {
 
-            e.printStackTrace();
+                opened = true;
+                Desktop desktop = Desktop.getDesktop();
+                desktop.browse(FileHelper.getFile(loggingFile).toURI());
+            } catch (Exception e) {
+
+                e.printStackTrace();
+            }
         }
     }
 
