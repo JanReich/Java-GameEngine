@@ -99,6 +99,8 @@ public class Display extends JFrame implements WindowListener, ComponentListener
         if(config.useCustomCursor()) setCursor(getToolkit().createCustomCursor(ImageHelper.getImage("Engine/Images/Cursor.png"), new Point(0, 0), "Jans Cursor"));
         addDrawingPanel();
 
+
+
         setVisible(true);
     }
 

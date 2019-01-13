@@ -5,7 +5,7 @@ import engine.graphics.Display;
 import engine.graphics.interfaces.GraphicalObject;
 import engine.toolbox.resourceHelper.DrawHelper;
 
-    public class GameManager extends Game implements GraphicalObject {
+public class GameManager extends Game implements GraphicalObject {
 
             //Attribute
 
@@ -35,7 +35,6 @@ import engine.toolbox.resourceHelper.DrawHelper;
 
     @Override
     public void draw(DrawHelper draw) {
-
 
     }
 }

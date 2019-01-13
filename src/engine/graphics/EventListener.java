@@ -3,8 +3,10 @@ package engine.graphics;
 import engine.configSystem.DisplayConfig;
 import engine.graphics.interfaces.WindowEventListener;
 import engine.logger.MyLogger;
+import engine.toolbox.resourceHelper.ImageHelper;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.WindowEvent;
 
 public class EventListener implements WindowEventListener {
