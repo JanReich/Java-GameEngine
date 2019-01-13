@@ -78,9 +78,6 @@ public class Display extends JFrame implements WindowListener, ComponentListener
         if(config.isCentered()) setLocationRelativeTo(null);
         else setLocation(config.getWindowX(), config.getWindowY());
 
-        if(config.useCustomCursor()) setCursor(getToolkit().createCustomCursor(ImageHelper.getImage("Engine/Images/Cursor.png"), new Point(0, 0), "Jans Cursor"));
-        addDrawingPanel();
-
         if(config.useCustomLayout()) {
 
             try {
@@ -98,6 +95,10 @@ public class Display extends JFrame implements WindowListener, ComponentListener
                 SwingUtilities.updateComponentTreeUI(this);
             } catch (Exception e) {}
         }
+
+        if(config.useCustomCursor()) setCursor(getToolkit().createCustomCursor(ImageHelper.getImage("Engine/Images/Cursor.png"), new Point(0, 0), "Jans Cursor"));
+        addDrawingPanel();
+
         setVisible(true);
     }
 

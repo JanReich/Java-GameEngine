@@ -2,40 +2,32 @@ package gamePackage;
 
 import engine.abitur.database.DatabaseConnector;
 import engine.graphics.Display;
-import engine.graphics.interfaces.GraphicalObject;
 
-import engine.toolbox.resourceHelper.DrawHelper;
-
-public class GameManager implements GraphicalObject {
+public class GameManager extends Game {
 
             //Attribute
 
             //Referenzen
-        private Display display;
-
 
     /**
-     * Dieser Konstruktor wird aufgerufen, wenn in der Config MySQL deaktiviert ist.
+     * Dieser Konstruktor wird aufgerufen, wenn das laden der Engine abgeschlossen wurde und
+     * das Spiel gestartet werden kann.
+     *
+     * Dieser Konstruktor wird auch nur aufgerufen, wenn MySQL in der Config deaktiviert ist!
      */
     public GameManager(Display display) {
 
-        this.display = display;
+        super(display);
     }
 
     /**
-     * Dieser Konstruktor wird aufgerufen, wenn in der Config MySQL aktiviert ist.
+     * Dieser Konstruktor wird aufgerufen, wenn das laden der Engine abgeschlossen wurde und
+     * das Spiel gestartet werden kann.
+     *
+     * Dieser Konstruktor wird auch nur aufgerufen, wenn MySQL in der Config aktiviert ist!
      */
     public GameManager(Display display, DatabaseConnector connector) {
 
-        this.display = display;
-
-
-        Layout layout = new Layout(display);
-        display.getActivePanel().drawObjectOnPanel(layout);
-    }
-
-    @Override
-    public void draw(DrawHelper draw) {
-
+        super(display, connector);
     }
 }

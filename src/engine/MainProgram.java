@@ -62,8 +62,7 @@ public class MainProgram {
             DatabaseConnector connector = new DatabaseConnector(mySQLConfig.getHost(), mySQLConfig.getPort(), mySQLConfig.getDatabase(), mySQLConfig.getUsername(), mySQLConfig.getPassword());
 
             MyLogger.engineInformation("[engine] Laden der engine abgeschlossen!");
-            GameManager gameManager = new GameManager(display, connector);
-            display.getActivePanel().drawObjectOnPanel(gameManager);
+            new GameManager(display, connector);
         } else {
 
             MyLogger.engineInformation("[engine] Laden der engine abgeschlossen!");

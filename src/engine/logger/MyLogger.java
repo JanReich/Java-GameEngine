@@ -31,6 +31,8 @@ public class MyLogger {
 
             logger.setLevel(Level.ALL);
 
+            if(!FileHelper.isFileExisting(FileHelper.getFile("Logging"))) FileHelper.createDir(FileHelper.getFile("Logging"));
+
             if(!FileHelper.isFileExisting(FileHelper.getFile("Logging/" + SystemHelper.getDate())))
                 FileHelper.createDir(FileHelper.getFile("Logging/" + SystemHelper.getDate()));
             fileHTML = new FileHandler("res/Logging/" + SystemHelper.getDate() + "/" + "log_" + SystemHelper.getTimeAsFilename() + ".html");
