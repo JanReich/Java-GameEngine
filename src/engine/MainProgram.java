@@ -8,7 +8,6 @@ import engine.graphics.Display;
 import engine.graphics.EventListener;
 import engine.logger.MyLogger;
 import gamePackage.GameManager;
-import sun.applet.Main;
 
 import javax.swing.*;
 

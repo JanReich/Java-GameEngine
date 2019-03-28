@@ -10,7 +10,8 @@ public class FileHelper {
             //Attribute
 
             //Referenzen
-        private static String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath().replace("out/production/GameEngine/", "res/");
+        private static String dir = Thread.currentThread().getContextClassLoader().getResource("").getPath().split("/")[5];
+        private static String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath().replace("out/production/" + dir + "/", "res/");
 
     /**
      * Diese Methode erstellt mittels eines Strings (@param path) ein neuen
