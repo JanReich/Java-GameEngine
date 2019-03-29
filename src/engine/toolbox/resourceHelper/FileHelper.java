@@ -10,8 +10,8 @@ public class FileHelper {
             //Attribute
 
             //Referenzen
-        private static String dir = Thread.currentThread().getContextClassLoader().getResource("").getPath().split("/")[5];
-        private static String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath().replace("out/production/" + dir + "/", "res/");
+        private static String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath();
+        private static String[] dir = Thread.currentThread().getContextClassLoader().getResource("").getPath().split("/");
 
     /**
      * Diese Methode erstellt mittels eines Strings (@param path) ein neuen
@@ -19,7 +19,12 @@ public class FileHelper {
      */
     public static File getFile(String path) {
 
-        return new File(rootPath + path);
+        int indedx = 0;
+        for (int i = 0; i < dir.length; i++) {
+
+            if(dir[i].equalsIgnoreCase("out")) indedx = i + 2;
+        }
+        return new File(rootPath.replace("out/production/" + dir[indedx] + "/", "res/") + path);
     }
 
     /**
