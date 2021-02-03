@@ -1,9 +1,11 @@
 package engine.configSystem;
 
 import engine.toolbox.resourceHelper.FileHelper;
+import lombok.Getter;
 
 import java.util.HashMap;
 
+@Getter
 public class MySQLConfig extends Config {
 
   private boolean debugging;
@@ -17,10 +19,8 @@ public class MySQLConfig extends Config {
     super(FileHelper.getFile("Engine/Configs/MySQLConfig.properties"));
   }
 
-  // --------------- MySQL - Configreader --------------- //
   @Override
   public void save() {
-
   }
 
   @Override
@@ -47,29 +47,5 @@ public class MySQLConfig extends Config {
       config.put("password", "kkgbeste");
       FileHelper.setProperty(file, config);
     }
-  }
-
-  public String getHost() {
-    return host;
-  }
-
-  public int getPort() {
-    return port;
-  }
-
-  public String getDatabase() {
-    return database;
-  }
-
-  public String getUsername() {
-    return username;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public boolean isDebugging() {
-    return debugging;
   }
 }

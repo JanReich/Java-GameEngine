@@ -1,7 +1,9 @@
 package engine.physik.PhysicalObjects;
 
 import engine.toolbox.math.Point2f;
+import lombok.Getter;
 
+@Getter
 public class Circle extends PhysicalObject {
 
   private final int radius;
@@ -20,10 +22,5 @@ public class Circle extends PhysicalObject {
     this.y = position.getY();
     this.centerX = position.getX() + radius;
     this.centerY = position.getY() + radius;
-  }
-
-  //---------- GETTER AND SETTER ----------\\
-  public int getRadius() {
-    return radius;
   }
 }

@@ -1,7 +1,8 @@
 package engine.toolbox.system.cryptography;
 
 import engine.logger.MyLogger;
-import engine.toolbox.math.Math2D;
+import engine.toolbox.math.SimpleMath;
+import lombok.Getter;
 
 import java.math.BigInteger;
 
@@ -11,13 +12,15 @@ public class RSA {
   private final long p;
   private final long q;
 
+  @Getter
   private String publicKey;
+  @Getter
   private String privateKey;
 
   public RSA() {
     MyLogger.engineInformation("[engine-RSA] Verschlüsselung wird vorbereitet...");
-    p = Math2D.generatePrime((int) (Math.random() * 1000) + 2000);
-    q = Math2D.generatePrime((int) (Math.random() * 1000) + 1000);
+    p = SimpleMath.generatePrime((int) (Math.random() * 1000) + 2000);
+    q = SimpleMath.generatePrime((int) (Math.random() * 1000) + 1000);
     generateKeys();
   }
 
@@ -26,7 +29,7 @@ public class RSA {
     MyLogger.engineInformation("[engine-RSA] PublicKey und PrivateKey werden generiert...");
     long n = p * q;
     long phiN = (p - 1) * (q - 1);
-    long e = Math2D.generatePrime((int) (Math.random() * 1000));
+    long e = SimpleMath.generatePrime((int) (Math.random() * 1000));
     if (phiN % e == 0) {
       generateKeys();
       return;
@@ -89,14 +92,5 @@ public class RSA {
     BigInteger nBig = new BigInteger(n + "");
     BigInteger message = textBig.modPow(dBig, nBig);
     return message.toString();
-  }
-
-  public String getPublicKey() {
-    return publicKey;
-
-  }
-
-  public String getPrivateKey() {
-    return privateKey;
   }
 }

@@ -70,9 +70,9 @@ public class Display extends JFrame implements WindowListener, ComponentListener
     } else {
       setLocation(config.getWindowX(), config.getWindowY());
     }
-    if (config.useCustomLayout()) {
+    if (config.isUsingCustomLayout()) {
       try {
-        if (config.useCustomTheme()) {
+        if (config.isUsingCustomTheme()) {
           MetalTheme theme = new CustomTheme(FileHelper.getFile("Engine/JFrameThemes/" + config.getCustomTheme()));
           MetalLookAndFeel.setCurrentTheme(theme);
         }
@@ -81,9 +81,10 @@ public class Display extends JFrame implements WindowListener, ComponentListener
         JDialog.setDefaultLookAndFeelDecorated(true);
         SwingUtilities.updateComponentTreeUI(this);
       } catch (Exception e) {
+        e.printStackTrace();
       }
     }
-    if (config.useCustomCursor()) {
+    if (config.isUsingCustomCursor()) {
       setCursor(getToolkit().createCustomCursor(ImageHelper.getImage("Engine/Images/Cursor.png"), new Point(0, 0), "Jans Cursor"));
     }
     addDrawingPanel();

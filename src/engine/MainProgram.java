@@ -31,7 +31,7 @@ public class MainProgram {
     MyLogger.engineInformation("[engine] engine wird geladen...");
     DisplayConfig displayConfig = new DisplayConfig();
 
-    if (displayConfig.useCustomLayout()) {
+    if (displayConfig.isUsingCustomLayout()) {
       try {
         UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -43,7 +43,7 @@ public class MainProgram {
     Display display = new Display(displayConfig);
     new EventListener(display, displayConfig);
 
-    if (engineConfig.isUseMySQL()) {
+    if (engineConfig.isUsingMySQL()) {
       MyLogger.engineInformation("[<b>MySQL</b>] Config wird geladen...");
       MySQLConfig mySQLConfig = new MySQLConfig();
       MyLogger.engineInformation("[<b>MySQL</b>] Verbindung zur Datenbank wird hergestellt...");

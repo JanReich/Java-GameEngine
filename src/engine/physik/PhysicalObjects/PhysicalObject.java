@@ -11,7 +11,6 @@ public abstract class PhysicalObject {
   protected double centerX;
   protected double centerY;
 
-  //---------- GETTER AND SETTER ----------\\
   public Point2f getPosition() {
     return new Point2f((float) x, (float) y);
   }

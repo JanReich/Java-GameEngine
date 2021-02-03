@@ -4,6 +4,8 @@ import engine.graphics.Display;
 import engine.graphics.interfaces.GraphicalObject;
 import engine.graphics.interfaces.RemovableObject;
 import engine.toolbox.resourceHelper.DrawHelper;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.*;
 
@@ -25,9 +27,9 @@ public class TextField implements GraphicalObject, RemovableObject {
   @Override
   public void draw(final DrawHelper draw) {
     draw.setFont(font);
-      if (width < draw.getFontWidth(input.getInputQuerry())) {
-          input.removeLetter();
-      }
+    if (width < draw.getFontWidth(input.getInputQuerry())) {
+      input.removeLetter();
+    }
   }
 
   @Override

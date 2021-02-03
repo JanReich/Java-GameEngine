@@ -3,9 +3,13 @@ package engine.toolbox.uiPackage;
 import engine.graphics.interfaces.KeyInterface;
 import engine.toolbox.resourceHelper.DrawHelper;
 import engine.toolbox.system.Clipboard;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.event.KeyEvent;
 
+@Getter
+@Setter
 public class KeyInput implements KeyInterface {
 
   private boolean alt;
@@ -232,22 +236,5 @@ public class KeyInput implements KeyInterface {
 
   @Override
   public void draw(DrawHelper draw) {
-  }
-
-  //---------- GETTER AND SETTER ----------
-  public boolean isTyping() {
-    return typing;
-  }
-
-  public String getInputQuerry() {
-    return inputQuerry;
-  }
-
-  public void setTyping(boolean typing) {
-    this.typing = typing;
-  }
-
-  public void setInputQuerry(String inputQuerry) {
-    this.inputQuerry = inputQuerry;
   }
 }

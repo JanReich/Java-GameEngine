@@ -1,5 +1,8 @@
 package engine.toolbox.math;
 
+import lombok.Getter;
+
+@Getter
 public class Point2f {
 
   private float x;
@@ -57,15 +60,7 @@ public class Point2f {
     return new Vector2f(x, y);
   }
 
-  //---------- GETTER AND SETTER ----------
-  public float getX() {
-    return x;
-  }
-
-  public float getY() {
-    return y;
-  }
-
+  @Override
   public String toString() {
     return "Point2f {x: " + x + "|y: " + y + "}";
   }

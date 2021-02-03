@@ -1,12 +1,14 @@
 package engine.physik.PhysicalObjects;
 
 import engine.toolbox.math.Point2f;
+import lombok.Getter;
 
+@Getter
 public class Triangle extends PhysicalObject {
 
-  private Point2f point1;
-  private Point2f point2;
-  private Point2f point3;
+  private final Point2f point1;
+  private final Point2f point2;
+  private final Point2f point3;
 
   public Triangle(final Point2f point1, final Point2f point2, final Point2f point3) {
     this.point1 = point1;
@@ -22,18 +24,5 @@ public class Triangle extends PhysicalObject {
     this.point3 = new Point2f(x3, y3);
     this.x = point1.getX();
     this.y = point1.getY();
-  }
-
-  //---------- GETTER AND SETTER ----------\\
-  public Point2f getPoint1() {
-    return point1;
-  }
-
-  public Point2f getPoint2() {
-    return point2;
-  }
-
-  public Point2f getPoint3() {
-    return point3;
   }
 }

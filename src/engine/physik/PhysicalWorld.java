@@ -184,7 +184,6 @@ public abstract class PhysicalWorld implements TimeBasedObject {
       } else if (object instanceof Ellipse) {
 
       }
-
     }
   }
 }

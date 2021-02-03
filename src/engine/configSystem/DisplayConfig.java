@@ -2,36 +2,36 @@ package engine.configSystem;
 
 import engine.logger.MyLogger;
 import engine.toolbox.resourceHelper.FileHelper;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashMap;
 
+@Getter
+@Setter
 public class DisplayConfig extends Config {
 
-  //Config-Werte
   private int width;
   private int height;
-
   private boolean resizable;
   private boolean alwaysOnTop;
-
-  private String title;
-
-  //Display - Position
   private int windowX;
   private int windowY;
-
   private boolean showFPS;
   private boolean isCentered;
+  @Getter(AccessLevel.NONE)
   private boolean useCustomCursor;
-
-  private String customTheme;
+  @Getter(AccessLevel.NONE)
   private boolean useCustomTheme;
+  @Getter(AccessLevel.NONE)
   private boolean useCustomLayout;
-
-  private String quitMessage;
-  private String programmTitle;
   private boolean quitConfirmation;
 
+  private String title;
+  private String customTheme;
+  private String quitMessage;
+  private String programTitle;
 
   public DisplayConfig() {
     super(FileHelper.getFile("Engine/Configs/DisplayConfig.properties"));
@@ -45,6 +45,7 @@ public class DisplayConfig extends Config {
 
   @Override
   public void readConfig() {
+    //todo: Check if the width, height, windowX ord windowY is null (Check null or)
     width = Integer.parseInt(FileHelper.getProperty(file, "width"));
     height = Integer.parseInt(FileHelper.getProperty(file, "height"));
 
@@ -64,16 +65,16 @@ public class DisplayConfig extends Config {
     useCustomLayout = Boolean.parseBoolean(FileHelper.getProperty(file, "useCustomLayout"));
 
     quitMessage = FileHelper.getProperty(file, "quitMessage");
-    programmTitle = FileHelper.getProperty(file, "programmTitle");
+    programTitle = FileHelper.getProperty(file, "programmTitle");
     quitConfirmation = Boolean.parseBoolean(FileHelper.getProperty(file, "quitConfirmation"));
   }
 
   @Override
   public void setStandards() {
     if (!FileHelper.isFileExisting(file)) {
-        if (necessary) {
-            System.err.println("Program kann ohne ConfigDatei nicht gestartet werden! Config wird mit Standardwerten erstellt...");
-        }
+      if (necessary) {
+        System.err.println("Program kann ohne ConfigDatei nicht gestartet werden! Config wird mit Standardwerten erstellt...");
+      }
 
       FileHelper.createNewFile(file);
       HashMap<String, String> config = new HashMap<>();
@@ -97,74 +98,21 @@ public class DisplayConfig extends Config {
       config.put("programmTitle", "Programm schließen");
       config.put("quitMessage", "Möchten Sie das Programm wirklich schließen?");
       FileHelper.setProperty(file, config);
-        if (necessary) {
-            System.exit(-1);
-        }
+      if (necessary) {
+        System.exit(-1);
+      }
     }
   }
 
-  //GETTER AND SETTER
-  public int getWidth() {
-    return width;
-  }
-
-  public int getHeight() {
-    return height;
-  }
-
-  public boolean isResizable() {
-    return resizable;
-  }
-
-  public boolean isAlwaysOnTop() {
-    return alwaysOnTop;
-  }
-
-  public String getTitle() {
-    return title;
-  }
-
-  public int getWindowX() {
-    return windowX;
-  }
-
-  public int getWindowY() {
-    return windowY;
-  }
-
-  public boolean isShowFPS() {
-    return showFPS;
-  }
-
-  public boolean isCentered() {
-    return isCentered;
-  }
-
-  public boolean useCustomCursor() {
-    return useCustomCursor;
-  }
-
-  public boolean useCustomLayout() {
-    return useCustomLayout;
-  }
-
-  public String getCustomTheme() {
-    return customTheme;
-  }
-
-  public boolean useCustomTheme() {
+  public boolean isUsingCustomTheme() {
     return useCustomTheme;
   }
 
-  public String getQuitMessage() {
-    return quitMessage;
+  public boolean isUsingCustomLayout() {
+    return useCustomLayout;
   }
 
-  public String getProgrammTitle() {
-    return programmTitle;
-  }
-
-  public boolean isQuitConfirmation() {
-    return quitConfirmation;
+  public boolean isUsingCustomCursor() {
+    return useCustomCursor;
   }
 }

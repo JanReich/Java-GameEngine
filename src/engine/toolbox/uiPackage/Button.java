@@ -14,9 +14,9 @@ public class Button implements AdvancedMouseInterface {
   private boolean hover;
   private boolean clicked;
 
-  private Image button;
-  private Image hoverButton;
-  private Point2f position;
+  private final Image button;
+  private final Image hoverButton;
+  private final Point2f position;
 
   public Button(final String image, final boolean hover, final Point2f position, final int width, final int height) {
     this(image, hover, (int) position.getX(), (int) position.getY(), width, height);

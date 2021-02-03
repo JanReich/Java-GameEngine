@@ -4,13 +4,16 @@ import engine.logger.MyLogger;
 import engine.physik.PhysicalObjects.Rectangle;
 import engine.physik.PhysicalObjects.Triangle;
 import engine.toolbox.math.Point2f;
-import jdk.nashorn.internal.objects.annotations.Getter;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.awt.*;
 import java.awt.geom.Area;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 
+@Setter
+@Getter
 public class DrawHelper {
 
   private int screenWidth;
@@ -288,31 +291,6 @@ public class DrawHelper {
 
   public void setColor(final int r, final int g, final int b, final int a) {
     g2d.setColor(new Color(r, g, b, a));
-  }
-
-  //---------- GETTER AND SETTER ----------
-  public Graphics2D getG2d() {
-    return g2d;
-  }
-
-  public int getScreenWidth() {
-    return screenWidth;
-  }
-
-  public int getScreenHeight() {
-    return screenHeight;
-  }
-
-  public void updateGraphics(final Graphics2D g2d) {
-    this.g2d = g2d;
-  }
-
-  public void setScreenWidth(final int screenWidth) {
-    this.screenWidth = screenWidth;
-  }
-
-  public void setScreenHeight(final int screenHeight) {
-    this.screenHeight = screenHeight;
   }
 
   public void addLogMessage(final int type) {

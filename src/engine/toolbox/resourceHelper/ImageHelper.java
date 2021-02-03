@@ -7,7 +7,8 @@ import java.io.IOException;
 
 public class ImageHelper {
 
-  private static final String rootPath = Thread.currentThread().getContextClassLoader().getResource("").getPath().replace("out/production/GameEngine/", "res/");
+  private static final String rootPath = Thread.currentThread().getContextClassLoader().getResource("")
+      .getPath().replace("out/production/GameEngine/", "res/");
 
   public static BufferedImage getImage(final String path) {
     try {

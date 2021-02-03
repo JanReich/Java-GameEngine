@@ -31,7 +31,7 @@ public class SpriteSheet {
       images = new Image[imagesCol][imagesRow];
       for (int row = 0; row < imagesCol; row++) {
         for (int col = 0; col < imagesRow; col++) {
-          images[row][col] = spriteSheet.getSubimage(spriteSheet.getWidth() / imagesCol * row, spriteSheet.getHeight() / imagesRow * col, spriteSheet.getWidth() / imagesCol, spriteSheet.getHeight() / imagesRow);
+          images[row][col] = spriteSheet.getSubImage(spriteSheet.getWidth() / imagesCol * row, spriteSheet.getHeight() / imagesRow * col, spriteSheet.getWidth() / imagesCol, spriteSheet.getHeight() / imagesRow);
         }
       }
       MyLogger.engineInformation("[engine] Laden des Spritesheet wurde erfolgreich abgeschlossen!");

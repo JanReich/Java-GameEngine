@@ -6,7 +6,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class MD5 {
 
-  public static String ENCODE(String md5) {
+  public static String ENCODE(final String md5) {
     MyLogger.info("[engine] Ein String wird MD5 verschlüsselt...");
     try {
       java.security.MessageDigest md = java.security.MessageDigest.getInstance("MD5");

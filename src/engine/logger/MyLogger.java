@@ -12,8 +12,6 @@ public class MyLogger {
 
   private static boolean opened;
   private static String loggingFile;
-  private static FileHandler fileHTML;
-  private static Formatter formatterHTML;
 
   private static EngineConfig engineConfig;
   private final static Logger LOGGER = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
@@ -38,10 +36,10 @@ public class MyLogger {
       if (!FileHelper.isFileExisting(FileHelper.getFile("Logging/" + SystemHelper.getDate()))) {
         FileHelper.createDir(FileHelper.getFile("Logging/" + SystemHelper.getDate()));
       }
-      fileHTML = new FileHandler("res/Logging/" + SystemHelper.getDate() + "/" + "log_" + SystemHelper.getTimeAsFilename() + ".html");
+      FileHandler fileHTML = new FileHandler("res/Logging/" + SystemHelper.getDate() + "/" + "log_" + SystemHelper.getTimeAsFilename() + ".html");
       loggingFile = "Logging/" + SystemHelper.getDate() + "/" + "log_" + SystemHelper.getTimeAsFilename() + ".html";
       // create an HTML formatter
-      formatterHTML = new HtmlFormatter();
+      Formatter formatterHTML = new HtmlFormatter();
       fileHTML.setFormatter(formatterHTML);
       logger.addHandler(fileHTML);
     } catch (IOException e) {

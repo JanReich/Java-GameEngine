@@ -1,9 +1,13 @@
 package engine.configSystem;
 
 import engine.toolbox.resourceHelper.FileHelper;
+import lombok.AccessLevel;
+import lombok.Getter;
 
+@Getter
 public class EngineConfig extends Config {
 
+  @Getter(AccessLevel.NONE)
   private boolean useMySQL;
   private boolean openHtmlFile;
 
@@ -25,12 +29,7 @@ public class EngineConfig extends Config {
   public void setStandards() {
   }
 
-  //---------- GETTER AND SETTER ----------
-  public boolean isUseMySQL() {
+  public boolean isUsingMySQL() {
     return useMySQL;
-  }
-
-  public boolean isOpenHtmlFile() {
-    return openHtmlFile;
   }
 }

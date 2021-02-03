@@ -3,10 +3,8 @@ package engine.graphics;
 import engine.configSystem.DisplayConfig;
 import engine.graphics.interfaces.WindowEventListener;
 import engine.logger.MyLogger;
-import engine.toolbox.resourceHelper.ImageHelper;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.WindowEvent;
 
 public class EventListener implements WindowEventListener {
@@ -30,7 +28,7 @@ public class EventListener implements WindowEventListener {
   @Override
   public void windowClosing(final WindowEvent e) {
     if (config.isQuitConfirmation()) {
-      int n = JOptionPane.showConfirmDialog(display, config.getQuitMessage(), config.getProgrammTitle(), JOptionPane.YES_NO_OPTION);
+      int n = JOptionPane.showConfirmDialog(display, config.getQuitMessage(), config.getProgramTitle(), JOptionPane.YES_NO_OPTION);
       if (n == 0) {
         MyLogger.engineInformation("[engine] Das Programm wurde beendet.");
         System.exit(0);

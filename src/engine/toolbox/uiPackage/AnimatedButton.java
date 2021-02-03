@@ -27,7 +27,7 @@ public class AnimatedButton implements AdvancedMouseInterface, RemovableObject {
     this.display = display;
     position = new Point2f(x, y);
     animation = new Animation(path, tilesWidth, tilesHeight, x, y, width, height);
-    display.getActivePanel().drawTimebasedObject(animation);
+    display.getActivePanel().drawTimeBasedObject(animation);
   }
 
   @Override

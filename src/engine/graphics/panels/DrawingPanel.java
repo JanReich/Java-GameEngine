@@ -13,12 +13,11 @@ import java.util.*;
 
 public class DrawingPanel extends Panel implements KeyListener, MouseListener, MouseMotionListener {
 
-  private final Timer timer;
-  private final DisplayConfig config;
   private DrawHelper drawHelper;
+  private final DisplayConfig config;
 
-  private LinkedHashMap<GraphicalObject, Integer> graphicalObjects;
   private final ArrayList<TimeBasedObject> timeBasedObjects;
+  private LinkedHashMap<GraphicalObject, Integer> graphicalObjects;
 
   public DrawingPanel(final DisplayConfig config) {
     super();
@@ -26,7 +25,7 @@ public class DrawingPanel extends Panel implements KeyListener, MouseListener, M
     this.timeBasedObjects = new ArrayList<>();
     this.graphicalObjects = new LinkedHashMap<>();
     setDoubleBuffered(true);
-    timer = new Timer(10, this);
+    Timer timer = new Timer(10, this);
     timer.start();
   }
 
@@ -43,10 +42,10 @@ public class DrawingPanel extends Panel implements KeyListener, MouseListener, M
     super.paintComponent(g);
     Graphics2D g2d = (Graphics2D) g;
     //graphics setzen oder updaten
-    if (!(drawHelper != null)) {
+    if (drawHelper == null) {
       drawHelper = new DrawHelper(g2d);
     } else {
-      drawHelper.updateGraphics(g2d);
+      drawHelper.setG2d(g2d);
     }
     drawHelper.setScreenWidth(getWidth());
     drawHelper.setScreenHeight(getHeight());
@@ -111,12 +110,11 @@ public class DrawingPanel extends Panel implements KeyListener, MouseListener, M
     }
   }
 
-  //Graphical and Timebased Object
-  public void drawTimebasedObject(final Object object) {
-    drawTimebasedObject(object, 1);
+  public void drawTimeBasedObject(final Object object) {
+    drawTimeBasedObject(object, 1);
   }
 
-  public void drawTimebasedObject(final Object object, final int index) {
+  public void drawTimeBasedObject(final Object object, final int index) {
     if (object != null) {
       if (object instanceof GraphicalObject && object instanceof TimeBasedObject) {
         SwingUtilities.invokeLater(() -> timeBasedObjects.add((TimeBasedObject) object));
@@ -129,8 +127,7 @@ public class DrawingPanel extends Panel implements KeyListener, MouseListener, M
     }
   }
 
-  //TimebasedObject
-  public void addTimebasedObject(final TimeBasedObject object) {
+  public void addTimeBasedObject(final TimeBasedObject object) {
     if (object != null) {
       SwingUtilities.invokeLater(() -> timeBasedObjects.add(object));
     }

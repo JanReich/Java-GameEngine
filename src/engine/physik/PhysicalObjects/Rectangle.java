@@ -1,11 +1,13 @@
 package engine.physik.PhysicalObjects;
 
 import engine.toolbox.math.Point2f;
+import lombok.Getter;
 
+@Getter
 public class Rectangle extends PhysicalObject {
 
-  private double width;
-  private double height;
+  private final double width;
+  private final double height;
 
   public Rectangle(final double x, final double y, final int width, final int height) {
     this(new Point2f((float) x, (float) y), width, height);
@@ -59,14 +61,5 @@ public class Rectangle extends PhysicalObject {
   public void setPosition(final double x, final double y) {
     this.x = x;
     this.y = y;
-  }
-
-  //---------- GETTER AND SETTER ----------\\
-  public double getWidth() {
-    return width;
-  }
-
-  public double getHeight() {
-    return height;
   }
 }

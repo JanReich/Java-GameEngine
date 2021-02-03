@@ -1,5 +1,8 @@
 package engine.toolbox.math;
 
+import lombok.Getter;
+
+@Getter
 public class Vector2f {
 
   private float posX;
@@ -62,15 +65,15 @@ public class Vector2f {
    * angeglichen.
    */
   public void set(final Vector2f vec) {
-    this.posX = vec.getX();
-    this.posY = vec.getY();
+    this.posX = vec.getPosX();
+    this.posY = vec.getPosY();
   }
 
   /**
    * In dieser Methode werden 2 Vectoren addiert.
    */
   public void add(final Vector2f vec) {
-    this.add(vec.getX(), vec.getY());
+    this.add(vec.getPosX(), vec.getPosY());
   }
 
   /**
@@ -86,7 +89,7 @@ public class Vector2f {
    */
   @Deprecated
   public void sub(final Vector2f vec) {
-    this.sub(vec.getX(), vec.getY());
+    this.sub(vec.getPosX(), vec.getPosY());
   }
 
   /**
@@ -118,18 +121,10 @@ public class Vector2f {
    * Zwischen diesem und dem übergebenem Vektor wird das Skalaprodukt berechnet.
    */
   public float getDotProduct(final Vector2f vec) {
-    return (posX * vec.getX()) + (posY * vec.getY());
+    return (posX * vec.getPosX()) + (posY * vec.getPosY());
   }
 
-  //---------- GETTER AND SETTER ----------
-  public float getX() {
-    return posX;
-  }
-
-  public float getY() {
-    return posY;
-  }
-
+  @Override
   public String toString() {
     return "Vector2f {x: " + posX + "|y: " + posY + "}";
   }

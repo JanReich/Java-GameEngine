@@ -1,6 +1,8 @@
 package engine.graphics.panels;
 
 import engine.toolbox.resourceHelper.FileHelper;
+import lombok.AccessLevel;
+import lombok.Getter;
 
 import javax.swing.plaf.*;
 import javax.swing.plaf.metal.*;
@@ -8,6 +10,7 @@ import java.awt.*;
 import java.util.*;
 import java.io.*;
 
+@Getter
 public class CustomTheme extends DefaultMetalTheme {
 
   private String themeName = "";
@@ -132,53 +135,5 @@ public class CustomTheme extends DefaultMetalTheme {
       System.out.println("Im Theme " + themeName + " gab es einen Fehler beim auslesen folgender Farbe: " + font);
     }
     return new FontUIResource(szName, iStyle, iSize);
-  }
-
-  public String getName() {
-    return themeName;
-  }
-
-  protected ColorUIResource getPrimary1() {
-    return primary1;
-  }
-
-  protected ColorUIResource getPrimary2() {
-    return primary2;
-  }
-
-  protected ColorUIResource getPrimary3() {
-    return primary3;
-  }
-
-  protected ColorUIResource getSecondary1() {
-    return secondary1;
-  }
-
-  protected ColorUIResource getSecondary2() {
-    return secondary2;
-  }
-
-  protected ColorUIResource getSecondary3() {
-    return secondary3;
-  }
-
-  protected ColorUIResource getBlack() {
-    return black;
-  }
-
-  protected ColorUIResource getWhite() {
-    return white;
-  }
-
-  public FontUIResource getWindowTitleFont() {
-    return windowTitleFont;
-  }
-
-  public FontUIResource getMenuTextFont() {
-    return controlFont;
-  }
-
-  public FontUIResource getControlTextFont() {
-    return controlFont;
   }
 }

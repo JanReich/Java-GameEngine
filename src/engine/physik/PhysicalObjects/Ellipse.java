@@ -1,7 +1,9 @@
 package engine.physik.PhysicalObjects;
 
 import engine.toolbox.math.Point2f;
+import lombok.Getter;
 
+@Getter
 public class Ellipse extends PhysicalObject {
 
   private final int width;
@@ -18,14 +20,5 @@ public class Ellipse extends PhysicalObject {
     this.y = position.getY();
     centerX = position.getX() + width;
     centerY = position.getY() + height;
-  }
-
-  //---------- GETTER AND SETTER ----------\\
-  public int getWidth() {
-    return width;
-  }
-
-  public int getHeight() {
-    return height;
   }
 }

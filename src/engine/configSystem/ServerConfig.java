@@ -1,10 +1,11 @@
 package engine.configSystem;
 
 import engine.toolbox.resourceHelper.FileHelper;
+import lombok.Getter;
 
 import java.util.HashMap;
 
-
+@Getter
 public class ServerConfig extends Config {
 
   private int serverPort;
