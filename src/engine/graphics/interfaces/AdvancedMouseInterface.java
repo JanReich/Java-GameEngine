@@ -4,7 +4,7 @@ import java.awt.event.MouseEvent;
 
 public interface AdvancedMouseInterface extends MouseInterface {
 
-    void mouseMoved(MouseEvent e);
+  void mouseMoved(final MouseEvent e);
 
-    void mouseDragged(MouseEvent e);
+  void mouseDragged(final MouseEvent e);
 }

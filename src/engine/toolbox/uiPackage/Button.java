@@ -9,64 +9,64 @@ import java.awt.event.MouseEvent;
 
 public class Button implements AdvancedMouseInterface {
 
-            //Attribute
-        private int width;
-        private int height;
+  private final int width;
+  private final int height;
+  private boolean hover;
+  private boolean clicked;
 
-        private boolean hover;
-        private boolean clicked;
+  private Image button;
+  private Image hoverButton;
+  private Point2f position;
 
-            //Referenzen
-        private Image button;
-        private Image hoverButton;
+  public Button(final String image, final boolean hover, final Point2f position, final int width, final int height) {
+    this(image, hover, (int) position.getX(), (int) position.getY(), width, height);
+  }
 
-        private Point2f position;
-
-    public Button(String image, boolean hover, Point2f position, int width, int height) {
-
-        this(image, hover, (int) position.getX(), (int) position.getY(), width, height);
+  public Button(final String image, final boolean hover, final int x, final int y, final int width, final int height) {
+    this.width = width;
+    this.height = height;
+    this.position = new Point2f(x, y);
+    this.button = new Image(image);
+    if (hover) {
+      this.hoverButton = new Image(image.replace(".png", "-hover.png"));
+    } else {
+      hoverButton = button;
     }
+  }
 
-    public Button(String image, boolean hover, int x, int y, int width, int height) {
-
-        this.width = width;
-        this.height = height;
-        this.position = new Point2f(x, y);
-
-        this.button = new Image(image);
-        if(hover) this.hoverButton = new Image(image.replace(".png", "-hover.png"));
-        else hoverButton = button;
+  @Override
+  public void draw(final DrawHelper draw) {
+    if (hover) {
+      draw.drawImage(hoverButton, (int) position.getX(), (int) position.getY(), width, height);
+    } else {
+      draw.drawImage(button, (int) position.getX(), (int) position.getY(), width, height);
     }
+  }
 
-    @Override
-    public void draw(DrawHelper draw) {
-
-        if(hover) draw.drawImage(hoverButton, (int) position.getX(), (int) position.getY(), width, height);
-        else draw.drawImage(button, (int) position.getX(), (int) position.getY(), width, height);
+  @Override
+  public void mouseMoved(final MouseEvent e) {
+    if (e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height) {
+      hover = true;
+    } else {
+      hover = false;
     }
+  }
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-        if(e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height) hover = true;
-        else hover = false;
+  @Override
+  public void mouseReleased(final MouseEvent e) {
+    if (e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height) {
+      clicked = true;
+    } else {
+      clicked = false;
     }
+  }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {
+  @Override
+  public void mouseDragged(final MouseEvent e) {
+  }
 
-        if(e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height) clicked = true;
-        else clicked = false;
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-        //---------- GETTER AND SETTER ----------
-    public boolean isClicked() {
-
-        return clicked;
-    }
+  //---------- GETTER AND SETTER ----------
+  public boolean isClicked() {
+    return clicked;
+  }
 }

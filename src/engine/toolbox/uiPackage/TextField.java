@@ -9,54 +9,47 @@ import java.awt.*;
 
 public class TextField implements GraphicalObject, RemovableObject {
 
-            //Attribute
-        private int width;
+  private final int width;
 
-            //Referenzen
-        private Font font;
-        private KeyInput input;
-        private Display display;
+  private Font font;
+  private KeyInput input;
+  private final Display display;
 
-    public TextField(Display display, int width) {
+  public TextField(final Display display, final int width) {
+    this.width = width;
+    this.display = display;
+    this.input = new KeyInput();
+    display.getActivePanel().drawObjectOnPanel(input);
+  }
 
-        this.width = width;
-        this.display = display;
-        this.input = new KeyInput();
-        display.getActivePanel().drawObjectOnPanel(input);
-    }
+  @Override
+  public void draw(final DrawHelper draw) {
+    draw.setFont(font);
+      if (width < draw.getFontWidth(input.getInputQuerry())) {
+          input.removeLetter();
+      }
+  }
 
-    @Override
-    public void draw(DrawHelper draw) {
+  @Override
+  public void remove() {
+    display.getActivePanel().removeObjectFromPanel(input);
+    input = null;
+  }
 
-        draw.setFont(font);
-        if(width < draw.getFontWidth(input.getInputQuerry())) input.removeLetter();
-    }
+  //---------- GETTER AND SETTER ----------\\
+  public KeyInput getInput() {
+    return input;
+  }
 
-    @Override
-    public void remove() {
+  public void setFont(Font font) {
+    this.font = font;
+  }
 
-        display.getActivePanel().removeObjectFromPanel(input);
-        input = null;
-    }
+  public void setTyping(boolean typing) {
+    input.setTyping(typing);
+  }
 
-        //---------- GETTER AND SETTER ----------\\
-    public KeyInput getInput() {
-
-        return input;
-    }
-
-    public void setFont(Font font) {
-
-        this.font = font;
-    }
-
-    public void setTyping(boolean typing) {
-
-        input.setTyping(typing);
-    }
-
-    public void setInputQuerry(String input) {
-
-        this.input.setInputQuerry(input);
-    }
+  public void setInputQuerry(String input) {
+    this.input.setInputQuerry(input);
+  }
 }

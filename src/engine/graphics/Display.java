@@ -22,269 +22,235 @@ import java.util.Iterator;
 
 public class Display extends JFrame implements WindowListener, ComponentListener {
 
-            //Attribute
+  private Panel activePanel;
+  private final DisplayConfig config;
+  private Dimension windowDimension;
 
-            //Referenzen
-        private Panel activePanel;
-        private DisplayConfig config;
-        private Dimension windowDimension;
+  private final ArrayList<Panel> panels;
+  private final ArrayList<WindowEventListener> events;
 
-        private ArrayList<Panel> panels;
-        private ArrayList<WindowEventListener> events;
+  /**
+   * Im Konstruktor werden die verschiedenen Arraylists initalisiert, damit keine Nullpointer-Exeptions während der Run-Time auftreten.
+   */
+  public Display(final DisplayConfig config) {
+    this.config = config;
+    this.panels = new ArrayList<>();
+    this.events = new ArrayList<>();
+    init();
+  }
 
-    /**
-     * Im Konstruktor werden die verschiedenen Arraylists initalisiert, damit keine Nullpointer-Exeptions während der Run-Time auftreten.
-     */
-    public Display(DisplayConfig config) {
-
-        this.config = config;
-        this.panels = new ArrayList<>();
-        this.events = new ArrayList<>();
-
-        init();
+  /**
+   * In der Init-Methode wird die Konfiguration für das Display erstellt.
+   */
+  private void init() {
+    MyLogger.engineInformation("[engine] Load Display-Settings from Config...");
+    addWindowListener(this);
+    addComponentListener(this);
+    //Attribute des JFrames festlegen
+    setTitle(config.getTitle());
+    setAlwaysOnTop(config.isAlwaysOnTop());
+    if (config.isQuitConfirmation()) {
+      setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    } else {
+      setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
+    setIconImage(ImageHelper.getImage("Engine/Images/EngineIcon.png"));
+    windowDimension = new Dimension(config.getWidth(), config.getHeight());
+    if (config.isResizable()) {
+      setPreferredSize(windowDimension);
+    } else {
+      setSize(windowDimension);
+      setMinimumSize(windowDimension);
+      setMaximumSize(windowDimension);
+      setPreferredSize(windowDimension);
+    }
+    //Position des Displays
+    if (config.isCentered()) {
+      setLocationRelativeTo(null);
+    } else {
+      setLocation(config.getWindowX(), config.getWindowY());
+    }
+    if (config.useCustomLayout()) {
+      try {
+        if (config.useCustomTheme()) {
+          MetalTheme theme = new CustomTheme(FileHelper.getFile("Engine/JFrameThemes/" + config.getCustomTheme()));
+          MetalLookAndFeel.setCurrentTheme(theme);
+        }
+        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        JFrame.setDefaultLookAndFeelDecorated(true);
+        JDialog.setDefaultLookAndFeelDecorated(true);
+        SwingUtilities.updateComponentTreeUI(this);
+      } catch (Exception e) {
+      }
+    }
+    if (config.useCustomCursor()) {
+      setCursor(getToolkit().createCustomCursor(ImageHelper.getImage("Engine/Images/Cursor.png"), new Point(0, 0), "Jans Cursor"));
+    }
+    addDrawingPanel();
+    setVisible(true);
+  }
 
-    /**
-     * In der Init-Methode wird die Konfiguration für das Display erstellt.
-     */
-    private void init() {
+  /**
+   * Erstellt ein neues Drawingpanel und setzt dieses als aktives Panel, wenn es kein aktives Panel gibt
+   */
+  public DrawingPanel addDrawingPanel() {
+    if (config != null) {
+      DrawingPanel panel = new DrawingPanel(config);
+      panels.add(panel);
+      if (activePanel == null) {
+        setActivePanel(panel);
+      }
+      return panel;
+    } else {
+      throw new NullPointerException("Die Config konnte nicht geladen werden... Um den Fehler zu beheben starte das Programm neu, damit eine neue Config erstellt werden kann!");
+    }
+  }
 
-        MyLogger.engineInformation("[engine] Load Display-Settings from Config...");
-        addWindowListener(this);
-        addComponentListener(this);
-
-            //Attribute des JFrames festlegen
-        setTitle(config.getTitle());
-        setAlwaysOnTop(config.isAlwaysOnTop());
-
-        if(config.isQuitConfirmation()) setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        else setDefaultCloseOperation(EXIT_ON_CLOSE);
-
-        setIconImage(ImageHelper.getImage("Engine/Images/EngineIcon.png"));
-        windowDimension = new Dimension(config.getWidth(), config.getHeight());
-
-        if(config.isResizable()) {
-
-            setPreferredSize(windowDimension);
+  /**
+   * In dieser Methode wird ein Panel zum aktiven Panel gesetzt. Nur das aktive
+   * Panel wird auf dem Display dargestellt.
+   */
+  public void setActivePanel(final Panel panel) {
+    if (panel != null) {
+      if (panel instanceof DrawingPanel) {
+        if (activePanel != null) {
+          remove(activePanel);
+          activePanel = panel;
+          add(activePanel);
+          revalidate();
         } else {
-
-            setSize(windowDimension);
-            setMinimumSize(windowDimension);
-            setMaximumSize(windowDimension);
-            setPreferredSize(windowDimension);
+          add(panel);
+          activePanel = panel;
         }
-
-            //Position des Displays
-        if(config.isCentered()) setLocationRelativeTo(null);
-        else setLocation(config.getWindowX(), config.getWindowY());
-
-        if(config.useCustomLayout()) {
-
-            try {
-
-                if(config.useCustomTheme()) {
-
-                    MetalTheme theme = new CustomTheme(FileHelper.getFile("Engine/JFrameThemes/" + config.getCustomTheme()));
-                    MetalLookAndFeel.setCurrentTheme(theme);
-                }
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-
-                JFrame.setDefaultLookAndFeelDecorated(true);
-                JDialog.setDefaultLookAndFeelDecorated(true);
-
-                SwingUtilities.updateComponentTreeUI(this);
-            } catch (Exception e) {}
-        }
-
-        if(config.useCustomCursor()) setCursor(getToolkit().createCustomCursor(ImageHelper.getImage("Engine/Images/Cursor.png"), new Point(0, 0), "Jans Cursor"));
-        addDrawingPanel();
-
-        setVisible(true);
+      } else {
+        //TODO: Andere panels
+      }
     }
+  }
 
-    /**
-     * Erstellt ein neues Drawingpanel und setzt dieses als aktives Panel, wenn es kein aktives Panel gibt
-     */
-    public DrawingPanel addDrawingPanel() {
-
-        if(config != null) {
-
-            DrawingPanel panel = new DrawingPanel(config);
-            panels.add(panel);
-            if(activePanel == null) setActivePanel(panel);
-            return panel;
-        } else throw new NullPointerException("Die Config konnte nicht geladen werden... Um den Fehler zu beheben starte das Programm neu, damit eine neue Config erstellt werden kann!");
+  /**
+   * In dieser Methode wird ein bereits existierendes Panel vom Display entfernt
+   */
+  public void removePanel(final Panel panel) {
+    if (panels.contains(panel)) {
+      if (panel.equals(activePanel)) {
+        activePanel = null;
+        remove(panel);
+        panels.remove(panel);
+      } else {
+        panels.remove(activePanel);
+      }
+    } else {
+      throw new IllegalArgumentException("Du kannst nur panels entfernen, die du vorher hinzugefügt hast!");
     }
+  }
 
-    /**
-     * In dieser Methode wird ein Panel zum aktiven Panel gesetzt. Nur das aktive
-     * Panel wird auf dem Display dargestellt.
-     */
-    public void setActivePanel(Panel panel) {
-
-        if(panel != null) {
-
-            if(panel instanceof DrawingPanel) {
-
-                if(activePanel != null) {
-
-                    remove(activePanel);
-
-                    activePanel = panel;
-                    add(activePanel);
-                    revalidate();
-                } else {
-
-                    add(panel);
-                    activePanel = panel;
-                }
-            } else {
-
-                //TODO: Andere panels
-            }
-        }
+  /**
+   * Diese Methode returnt das active Panel, dass aktuell auf dem Display gezeichnet wird.
+   */
+  public DrawingPanel getActivePanel() {
+    if (activePanel instanceof DrawingPanel) {
+      return (DrawingPanel) activePanel;
+    } else {
+      System.err.println("[ERROR] Das Active Panel ist kein Drawing Panel");
     }
+    return null;
+  }
 
-    /**
-     * In dieser Methode wird ein bereits existierendes Panel vom Display entfernt
-     */
-    public void removePanel(Panel panel) {
+  public void addWindowListener(final WindowEventListener eventListener) {
+    SwingUtilities.invokeLater(() -> events.add(eventListener));
+  }
 
-        if(panels.contains(panel)) {
+  public void removeWindowListener(WindowEventListener eventListener) {
+    SwingUtilities.invokeLater(() -> events.add(eventListener));
+  }
 
-            if(panel.equals(activePanel)) {
-
-                activePanel = null;
-                remove(panel);
-                panels.remove(panel);
-            } else {
-
-                panels.remove(activePanel);
-            }
-        } else throw new IllegalArgumentException("Du kannst nur panels entfernen, die du vorher hinzugefügt hast!");
+  @Override
+  public void windowOpened(final WindowEvent e) {
+    //Event wird beim öffenen des Windows aufgeführt
+    Iterator<WindowEventListener> iterator = events.iterator();
+    while (iterator.hasNext()) {
+      WindowEventListener tempObject = iterator.next();
+      tempObject.windowOpened(e);
     }
+  }
 
-    /**
-     * Diese Methode returnt das active Panel, dass aktuell auf dem Display gezeichnet wird.
-     */
-    public DrawingPanel getActivePanel() {
-
-        if(activePanel instanceof DrawingPanel)
-            return (DrawingPanel) activePanel;
-        else System.err.println("[ERROR] Das Active Panel ist kein Drawing Panel");
-        return null;
+  @Override
+  public void windowClosing(final WindowEvent e) {
+    //Event wird beim schließen des Windows aufgeführt
+    Iterator<WindowEventListener> iterator = events.iterator();
+    while (iterator.hasNext()) {
+      WindowEventListener tempObject = iterator.next();
+      tempObject.windowClosing(e);
     }
+  }
 
-    public void addWindowListener(WindowEventListener eventListener) {
-
-        SwingUtilities.invokeLater(() -> events.add(eventListener));
+  @Override
+  public void windowActivated(final WindowEvent e) {
+    //Event wird ausgeführt, wenn das Window aktiv ist
+    Iterator<WindowEventListener> iterator = events.iterator();
+    while (iterator.hasNext()) {
+      WindowEventListener tempObject = iterator.next();
+      tempObject.windowActivated(e);
     }
+  }
 
-    public void removeWindowListener(WindowEventListener eventListener) {
-
-        SwingUtilities.invokeLater(() -> events.add(eventListener));
+  @Override
+  public void windowDeactivated(final WindowEvent e) {
+    //Event wird ausgeführt, wenn das Window inaktiv wird
+    Iterator<WindowEventListener> iterator = events.iterator();
+    while (iterator.hasNext()) {
+      WindowEventListener tempObject = iterator.next();
+      tempObject.windowDeactivated(e);
     }
+  }
 
-    @Override
-    public void windowOpened(WindowEvent e) {
-
-            //Event wird beim öffenen des Windows aufgeführt
-        Iterator<WindowEventListener> iterator = events.iterator();
-        while (iterator.hasNext()) {
-
-            WindowEventListener tempObject = iterator.next();
-            tempObject.windowOpened(e);
-        }
+  @Override
+  public void componentResized(final ComponentEvent e) {
+    if (!config.isResizable()) {
+      setSize(windowDimension);
     }
+  }
 
-    @Override
-    public void windowClosing(WindowEvent e) {
+  /**
+   * Event wird in dem Framework nicht benutzt
+   */
+  @Override
+  public void componentMoved(final ComponentEvent e) {
+  }
 
-            //Event wird beim schließen des Windows aufgeführt
-        Iterator<WindowEventListener> iterator = events.iterator();
-        while (iterator.hasNext()) {
+  /**
+   * Event wird in dem Framework nicht benutzt
+   */
+  @Override
+  public void componentShown(final ComponentEvent e) {
+  }
 
-            WindowEventListener tempObject = iterator.next();
-            tempObject.windowClosing(e);
-        }
-    }
+  /**
+   * Event wird in dem Framework nicht benutzt
+   */
+  @Override
+  public void componentHidden(final ComponentEvent e) {
+  }
 
-    @Override
-    public void windowActivated(WindowEvent e) {
+  /**
+   * Event wird in dem Framework nicht benutzt
+   */
+  @Override
+  public void windowClosed(final WindowEvent e) {
+  }
 
-        //Event wird ausgeführt, wenn das Window aktiv ist
-        Iterator<WindowEventListener> iterator = events.iterator();
-        while (iterator.hasNext()) {
+  /**
+   * Event wird in dem Framework nicht benutzt
+   */
+  @Override
+  public void windowIconified(final WindowEvent e) {
+  }
 
-            WindowEventListener tempObject = iterator.next();
-            tempObject.windowActivated(e);
-        }
-    }
-
-    @Override
-    public void windowDeactivated(WindowEvent e) {
-
-        //Event wird ausgeführt, wenn das Window inaktiv wird
-        Iterator<WindowEventListener> iterator = events.iterator();
-        while (iterator.hasNext()) {
-
-            WindowEventListener tempObject = iterator.next();
-            tempObject.windowDeactivated(e);
-        }
-    }
-
-    @Override
-    public void componentResized(ComponentEvent e) {
-
-        if(!config.isResizable())
-            setSize(windowDimension);
-    }
-
-    /**
-     * Event wird in dem Framework nicht benutzt
-     */
-    @Override
-    public void componentMoved(ComponentEvent e) {
-
-    }
-
-    /**
-     * Event wird in dem Framework nicht benutzt
-     */
-    @Override
-    public void componentShown(ComponentEvent e) {
-
-    }
-
-    /**
-     * Event wird in dem Framework nicht benutzt
-     */
-    @Override
-    public void componentHidden(ComponentEvent e) {
-
-    }
-
-    /**
-     * Event wird in dem Framework nicht benutzt
-     */
-    @Override
-    public void windowClosed(WindowEvent e) {
-
-    }
-
-    /**
-     * Event wird in dem Framework nicht benutzt
-     */
-    @Override
-    public void windowIconified(WindowEvent e) {
-
-    }
-
-    /**
-     * Event wird in dem Framework nicht benutzt
-     */
-    @Override
-    public void windowDeiconified(WindowEvent e) {
-
-    }
+  /**
+   * Event wird in dem Framework nicht benutzt
+   */
+  @Override
+  public void windowDeiconified(final WindowEvent e) {
+  }
 }

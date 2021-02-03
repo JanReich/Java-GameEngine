@@ -11,63 +11,58 @@ import java.awt.event.MouseEvent;
 
 public class AnimatedButton implements AdvancedMouseInterface, RemovableObject {
 
-            //Attribute
-        private int width;
-        private int height;
+  private final int width;
+  private final int height;
 
-        private boolean clicked;
-        private Point2f position;
+  private boolean clicked;
+  private final Point2f position;
 
-            //Referenzen
-        private Display display;
-        private Animation animation;
+  private final Display display;
+  private Animation animation;
 
-    public AnimatedButton(Display display, String path, int tilesWidth, int tilesHeight, int x, int y, int width, int height) {
+  public AnimatedButton(final Display display, final String path, final int tilesWidth, final int tilesHeight,
+                        final int x, final int y, final int width, final int height) {
+    this.width = width;
+    this.height = height;
+    this.display = display;
+    position = new Point2f(x, y);
+    animation = new Animation(path, tilesWidth, tilesHeight, x, y, width, height);
+    display.getActivePanel().drawTimebasedObject(animation);
+  }
 
-        this.width = width;
-        this.height = height;
-        this.display = display;
-        position = new Point2f(x, y);
+  @Override
+  public void remove() {
+    display.getActivePanel().removeObjectFromPanel(animation);
+    animation = null;
+  }
 
-        animation = new Animation(path, tilesWidth,tilesHeight, x, y, width, height);
-        display.getActivePanel().drawTimebasedObject(animation);
+  @Override
+  public void mouseMoved(MouseEvent e) {
+    if (e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height) {
+      animation.play();
+    } else {
+      animation.stop();
     }
+  }
 
-    @Override
-    public void remove() {
+  @Override
+  public void draw(DrawHelper draw) {
+  }
 
-        display.getActivePanel().removeObjectFromPanel(animation);
-        animation = null;
+  @Override
+  public void mouseDragged(MouseEvent e) {
+  }
+
+  @Override
+  public void mouseReleased(MouseEvent e) {
+    if (e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height) {
+      clicked = true;
+    } else {
+      clicked = false;
     }
+  }
 
-    @Override
-    public void mouseMoved(MouseEvent e) {
-
-        if(e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height) animation.play();
-        else animation.stop();
-    }
-
-    @Override
-    public void draw(DrawHelper draw) {
-
-    }
-
-    @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseReleased(MouseEvent e) {
-
-        if (e.getX() > position.getX() && e.getX() < position.getX() + width && e.getY() > position.getY() && e.getY() < position.getY() + height)
-            clicked = true;
-        else clicked = false;
-    }
-
-        //---------- GETTER AND SETTER ----------
-    public boolean isClicked() {
-
-        return clicked;
-    }
+  public boolean isClicked() {
+    return clicked;
+  }
 }

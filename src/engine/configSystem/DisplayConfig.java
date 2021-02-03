@@ -7,191 +7,164 @@ import java.util.HashMap;
 
 public class DisplayConfig extends Config {
 
-            //Config-Werte
-        private int width;
-        private int height;
+  //Config-Werte
+  private int width;
+  private int height;
 
-        private boolean resizable;
-        private boolean alwaysOnTop;
+  private boolean resizable;
+  private boolean alwaysOnTop;
 
-        private String title;
+  private String title;
 
-            //Display - Position
-        private int windowX;
-        private int windowY;
+  //Display - Position
+  private int windowX;
+  private int windowY;
 
-        private boolean showFPS;
-        private boolean isCentered;
-        private boolean useCustomCursor;
+  private boolean showFPS;
+  private boolean isCentered;
+  private boolean useCustomCursor;
 
-        private String customTheme;
-        private boolean useCustomTheme;
-        private boolean useCustomLayout;
+  private String customTheme;
+  private boolean useCustomTheme;
+  private boolean useCustomLayout;
 
-        private String quitMessage;
-        private String programmTitle;
-        private boolean quitConfirmation;
+  private String quitMessage;
+  private String programmTitle;
+  private boolean quitConfirmation;
 
 
-    public DisplayConfig() {
+  public DisplayConfig() {
+    super(FileHelper.getFile("Engine/Configs/DisplayConfig.properties"));
+    MyLogger.engineInformation("[engine] DisplayConfig wird geladen...");
+  }
 
-        super(FileHelper.getFile("Engine/Configs/DisplayConfig.properties"));
-        MyLogger.engineInformation("[engine] DisplayConfig wird geladen...");
-    }
+  @Override
+  public void save() {
+    //TODO:
+  }
 
-    @Override
-    public void save() {
+  @Override
+  public void readConfig() {
+    width = Integer.parseInt(FileHelper.getProperty(file, "width"));
+    height = Integer.parseInt(FileHelper.getProperty(file, "height"));
 
-        //TODO:
-    }
+    resizable = Boolean.parseBoolean(FileHelper.getProperty(file, "resizable"));
+    alwaysOnTop = Boolean.parseBoolean(FileHelper.getProperty(file, "alwaysOnTop"));
 
-    @Override
-    public void readConfig() {
+    title = FileHelper.getProperty(file, "title");
+    windowX = Integer.parseInt(FileHelper.getProperty(file, "windowX"));
+    windowY = Integer.parseInt(FileHelper.getProperty(file, "windowY"));
 
-        width = Integer.parseInt(FileHelper.getProperty(file, "width"));
-        height = Integer.parseInt(FileHelper.getProperty(file, "height"));
+    showFPS = Boolean.parseBoolean(FileHelper.getProperty(file, "showFPS"));
+    isCentered = Boolean.parseBoolean(FileHelper.getProperty(file, "isCentered"));
+    useCustomCursor = Boolean.parseBoolean(FileHelper.getProperty(file, "useCustomCursor"));
 
-        resizable = Boolean.parseBoolean(FileHelper.getProperty(file, "resizable"));
-        alwaysOnTop = Boolean.parseBoolean(FileHelper.getProperty(file, "alwaysOnTop"));
+    customTheme = FileHelper.getProperty(file, "customTheme");
+    useCustomTheme = Boolean.parseBoolean(FileHelper.getProperty(file, "useCustomTheme"));
+    useCustomLayout = Boolean.parseBoolean(FileHelper.getProperty(file, "useCustomLayout"));
 
-        title = FileHelper.getProperty(file, "title");
+    quitMessage = FileHelper.getProperty(file, "quitMessage");
+    programmTitle = FileHelper.getProperty(file, "programmTitle");
+    quitConfirmation = Boolean.parseBoolean(FileHelper.getProperty(file, "quitConfirmation"));
+  }
 
-        windowX = Integer.parseInt(FileHelper.getProperty(file, "windowX"));
-        windowY = Integer.parseInt(FileHelper.getProperty(file, "windowY"));
+  @Override
+  public void setStandards() {
+    if (!FileHelper.isFileExisting(file)) {
+        if (necessary) {
+            System.err.println("Program kann ohne ConfigDatei nicht gestartet werden! Config wird mit Standardwerten erstellt...");
+        }
 
-        showFPS = Boolean.parseBoolean(FileHelper.getProperty(file, "showFPS"));
-        isCentered = Boolean.parseBoolean(FileHelper.getProperty(file, "isCentered"));
-        useCustomCursor = Boolean.parseBoolean(FileHelper.getProperty(file, "useCustomCursor"));
+      FileHelper.createNewFile(file);
+      HashMap<String, String> config = new HashMap<>();
+      config.put("width", "1920");
+      config.put("height", "1080");
+      config.put("resizable", "false");
+      config.put("alwaysOnTop", "true");
+      config.put("title", "engine.Test-Window");
+      config.put("scale", "1");
+      config.put("windowX", "0");
+      config.put("windowY", "0");
 
-        customTheme = FileHelper.getProperty(file, "customTheme");
-        useCustomTheme = Boolean.parseBoolean(FileHelper.getProperty(file, "useCustomTheme"));
-        useCustomLayout = Boolean.parseBoolean(FileHelper.getProperty(file, "useCustomLayout"));
+      config.put("showFPS", "true");
+      config.put("isCentered", "true");
+      config.put("useCustomCursor", "true");
+      config.put("customTheme", "gray.theme");
+      config.put("useCustomTheme", "true");
+      config.put("useCustomLayout", "true");
 
-        quitMessage = FileHelper.getProperty(file, "quitMessage");
-        programmTitle = FileHelper.getProperty(file, "programmTitle");
-        quitConfirmation = Boolean.parseBoolean(FileHelper.getProperty(file, "quitConfirmation"));
-    }
-
-    @Override
-    public void setStandards() {
-
-        if(!FileHelper.isFileExisting(file)) {
-
-            if(necessary)
-                System.err.println("Program kann ohne ConfigDatei nicht gestartet werden! Config wird mit Standardwerten erstellt...");
-
-            FileHelper.createNewFile(file);
-
-            HashMap<String, String> config = new HashMap<>();
-            config.put("width", "1920");
-            config.put("height", "1080");
-
-            config.put("resizable", "false");
-            config.put("alwaysOnTop", "true");
-
-            config.put("title", "engine.Test-Window");
-
-            config.put("scale", "1");
-            config.put("windowX", "0");
-            config.put("windowY", "0");
-
-            config.put("showFPS", "true");
-            config.put("isCentered", "true");
-            config.put("useCustomCursor", "true");
-
-            config.put("customTheme", "gray.theme");
-            config.put("useCustomTheme", "true");
-            config.put("useCustomLayout", "true");
-
-            config.put("quitConfirmation", "true");
-            config.put("programmTitle", "Programm schließen");
-            config.put("quitMessage", "Möchten Sie das Programm wirklich schließen?");
-
-            FileHelper.setProperty(file, config);
-
-            if(necessary)
-                System.exit(-1);
+      config.put("quitConfirmation", "true");
+      config.put("programmTitle", "Programm schließen");
+      config.put("quitMessage", "Möchten Sie das Programm wirklich schließen?");
+      FileHelper.setProperty(file, config);
+        if (necessary) {
+            System.exit(-1);
         }
     }
+  }
 
-        //GETTER AND SETTER
-    public int getWidth() {
+  //GETTER AND SETTER
+  public int getWidth() {
+    return width;
+  }
 
-        return width;
-    }
+  public int getHeight() {
+    return height;
+  }
 
-    public int getHeight() {
+  public boolean isResizable() {
+    return resizable;
+  }
 
-        return height;
-    }
+  public boolean isAlwaysOnTop() {
+    return alwaysOnTop;
+  }
 
-    public boolean isResizable() {
+  public String getTitle() {
+    return title;
+  }
 
-        return resizable;
-    }
+  public int getWindowX() {
+    return windowX;
+  }
 
-    public boolean isAlwaysOnTop() {
+  public int getWindowY() {
+    return windowY;
+  }
 
-        return alwaysOnTop;
-    }
+  public boolean isShowFPS() {
+    return showFPS;
+  }
 
-    public String getTitle() {
+  public boolean isCentered() {
+    return isCentered;
+  }
 
-        return title;
-    }
+  public boolean useCustomCursor() {
+    return useCustomCursor;
+  }
 
-    public int getWindowX() {
+  public boolean useCustomLayout() {
+    return useCustomLayout;
+  }
 
-        return windowX;
-    }
+  public String getCustomTheme() {
+    return customTheme;
+  }
 
-    public int getWindowY() {
+  public boolean useCustomTheme() {
+    return useCustomTheme;
+  }
 
-        return windowY;
-    }
+  public String getQuitMessage() {
+    return quitMessage;
+  }
 
-    public boolean isShowFPS() {
+  public String getProgrammTitle() {
+    return programmTitle;
+  }
 
-        return showFPS;
-    }
-
-    public boolean isCentered() {
-
-        return isCentered;
-    }
-
-    public boolean useCustomCursor() {
-
-        return useCustomCursor;
-    }
-
-    public boolean useCustomLayout() {
-
-        return useCustomLayout;
-    }
-
-    public String getCustomTheme() {
-
-        return customTheme;
-    }
-
-    public boolean useCustomTheme() {
-
-        return useCustomTheme;
-    }
-
-    public String getQuitMessage() {
-
-        return quitMessage;
-    }
-
-    public String getProgrammTitle() {
-
-        return programmTitle;
-    }
-
-    public boolean isQuitConfirmation() {
-
-        return quitConfirmation;
-    }
+  public boolean isQuitConfirmation() {
+    return quitConfirmation;
+  }
 }

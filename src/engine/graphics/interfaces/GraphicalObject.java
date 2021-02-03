@@ -4,5 +4,5 @@ import engine.toolbox.resourceHelper.DrawHelper;
 
 public interface GraphicalObject {
 
-    void draw(DrawHelper draw);
+  void draw(final DrawHelper draw);
 }

@@ -45,7 +45,7 @@ public class Image {
      * In dieser Methode wird das Bild, welches diese Klasse repräsentiert
      * geladen.
      */
-    private void  loadImage(String path) {
+    private void loadImage(String path) {
 
         try {
 

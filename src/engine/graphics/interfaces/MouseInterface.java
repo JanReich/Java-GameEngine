@@ -4,5 +4,5 @@ import java.awt.event.MouseEvent;
 
 public interface MouseInterface extends GraphicalObject {
 
-    void mouseReleased(MouseEvent e);
+  void mouseReleased(final MouseEvent e);
 }

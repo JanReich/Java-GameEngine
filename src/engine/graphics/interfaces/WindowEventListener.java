@@ -4,11 +4,11 @@ import java.awt.event.WindowEvent;
 
 public interface WindowEventListener {
 
-    void windowOpened(WindowEvent e);
+  void windowOpened(final WindowEvent e);
 
-    void windowClosing(WindowEvent e);
+  void windowClosing(final WindowEvent e);
 
-    void windowActivated(WindowEvent e);
+  void windowActivated(final WindowEvent e);
 
-    void windowDeactivated(WindowEvent e);
+  void windowDeactivated(final WindowEvent e);
 }

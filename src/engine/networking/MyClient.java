@@ -4,38 +4,30 @@ import java.net.Socket;
 
 public class MyClient extends Client {
 
-    public MyClient(String hostname, int port) {
+  public MyClient(final String hostname, final int port) {
+    super(hostname, port);
+    registerMethod("exampleMessage", new Executable() {
+      @Override
+      public void run(final Datapackage pack, final Socket socket) {
+        //Die Run-Methode wird jedes Mal ausgeführt, wenn der server ein Datenpaket mit der Kennung
+        //"exampleMessage" erhält.
+      }
+    });
+  }
 
-        super(hostname, port);
+  @Override
+  public void onConnectionProblem() {
+  }
 
-        registerMethod("exampleMessage", new Executable() {
+  @Override
+  public void onConnectionGood() {
+  }
 
-            @Override
-            public void run(Datapackage pack, Socket socket) {
+  @Override
+  public void onReconnect() {
+  }
 
-                //Die Run-Methode wird jedes Mal ausgeführt, wenn der server ein Datenpaket mit der Kennung
-                //"exampleMessage" erhält.
-            }
-        });
-    }
-
-    @Override
-    public void onConnectionProblem() {
-
-    }
-
-    @Override
-    public void onConnectionGood() {
-
-    }
-
-    @Override
-    public void onReconnect() {
-
-    }
-
-    @Override
-    public void onMessageReceived(Datapackage pack, Socket socket) {
-
-    }
+  @Override
+  public void onMessageReceived(final Datapackage pack, final Socket socket) {
+  }
 }

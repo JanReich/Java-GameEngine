@@ -5,21 +5,17 @@ import engine.graphics.Display;
 
 public abstract class Game {
 
-            //Attribute
-        private final double VERSION = 1.0;
+  private final double VERSION = 1.0;
 
-            //Referenzen
-        protected Display display;
-        protected DatabaseConnector connector;
+  protected Display display;
+  protected DatabaseConnector connector;
 
-    public Game(Display display) {
+  public Game(final Display display) {
+    this.display = display;
+  }
 
-        this.display = display;
-    }
-
-    public Game(Display display, DatabaseConnector connector) {
-
-        this.display = display;
-        this.connector = connector;
-    }
+  public Game(final Display display, final DatabaseConnector connector) {
+    this.display = display;
+    this.connector = connector;
+  }
 }

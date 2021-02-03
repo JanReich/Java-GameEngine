@@ -152,17 +152,14 @@ public class Color {
     public float alpha;
 
     public Color() {
-
         this(0, 0, 0, 1);
     }
 
-    public Color(float r, float g, float b) {
-
+    public Color(final float r, final float g, final float b) {
         this(r, g, b, 255);
     }
 
-    public Color(int rgba) {
-
+    public Color(final int rgba) {
         float red = ((rgba & 0x00FF0000) >> 16) / 255f;
         float green = ((rgba & 0x0000FF00) >> 8) / 255f;
         float blue = (rgba & 0x000000FF) / 255f;
@@ -175,8 +172,7 @@ public class Color {
 
     }
 
-    public Color(float red, float green, float blue, float alpha) {
-
+    public Color(final float red, final float green, final float blue, final float alpha) {
         if(red > 1) this.red = red / 255;
         else this.red = red;
         if(blue > 1) this.blue = blue / 255;
@@ -188,44 +184,36 @@ public class Color {
     }
 
     public static Color random() {
-
         return new Color().setRandomColor();
     }
 
     public Color setRandomColor() {
-
         return new Color((float) Math.random(), (float) Math.random(), (float) Math.random(), (float) Math.random());
     }
 
         //---------- GETTER AND SETTER ----------\\
     public int getRed() {
-
         return (int) (this.red * 255f);
     }
 
     public int getGreen() {
-
         return (int) (this.green * 255f);
     }
 
     public int getBlue() {
-
         return (int) (this.blue * 255f);
     }
 
     public int getAlpha() {
-
         return (int) (this.alpha * 255f);
     }
 
     public int getRGBA() {
-
         return getRed() << 24 | getGreen() << 16 | getBlue() << 8 | getAlpha();
     }
 
     @Override
     public String toString() {
-
         return "Color [R: " + red + ", G: " + green + ", B: " + blue + ", A: " + alpha + "]";
     }
 }
